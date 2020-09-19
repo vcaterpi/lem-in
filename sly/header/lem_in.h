@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 14:22:06 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/18 02:13:19 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/19 16:17:30 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,11 @@ typedef struct			s_lemin {
 t_lst_point				*lst_create();
 t_lst_point				*lst_add(t_lst_point *lst);
 int						lst_length(t_lst_point *lst);
-
-// t_lst_file				*ls_lst_insert(t_lst_file *root,\
-// 						t_lst_file *lst, int *s, int x);
 t_lst_point				*lst_get_start(t_lst_point *lst);
-// t_lst_file				*ls_lst_reverse(t_lst_file *lst);
 void					lst_free(t_lst_point *lst);
 int						lst_check(t_lst_point *lst);
 t_lst_point				*lst_get_by_name(t_lst_point *lst, char *name);
-// t_lst_file				*ls_lst_swap(t_lst_file *lst);
-// int						ls_lst_sort_by_atime(t_lst_file *lst);
-// int						ls_lst_sort_by_ctime(t_lst_file *lst);
-// int						ls_lst_sort_by_mtime(t_lst_file *lst);
-// int						ls_lst_sort_by_name(t_lst_file *lst);
-// int						ls_root(t_lst_file *lst);
-// t_lst_file				*ls_lst_sort(t_lst_file *lst, int opt);
 void					lst_print_lst(t_lst_point *lst, int depth);
-// t_lst_file				*lst_get_by_name(t_lst_file *lst, int index,\
-// 						int is_hidden);
-// size_t					ls_lst_name_max_length(t_lst_file *lst);
-
-
-/*
-** ========================== LEM_IN FUNCTION =================================
-*/
 
 void					err();
 #endif

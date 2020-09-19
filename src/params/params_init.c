@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 22:52:46 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/19 16:14:53 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/19 16:17:29 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	params_free(t_lemin *params)
 {
 	ft_delete_table(&CAP_MATRIX, ROOMS_NUM);
 	ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
-	ft_double_free(ROOM_NAMES, (ROOMS_NUM + 2) / 2);
 	free(PARENT);
 	PARENT = NULL;
 }
