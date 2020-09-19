@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 17:42:18 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/09/16 13:02:08 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/19 16:14:42 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,44 @@
 # define FLOW_MATRIX    params->flow_matrix
 # define CAP_MATRIX     params->capacity_matrix
 # define PARENT         params->parent
+# define POINT          params->point
 # define DATA           *(int*)data
+
+typedef struct			s_lst_point {
+	struct s_lst_point	*prev;
+	struct s_lst_point	*next;
+	char				*name;
+	int					id;
+	int					x;
+	int					y;
+	int					ex;
+}						t_lst_point;
 
 typedef    struct s_lemin 
 {
-    char    **room_names;
-    int     **flow_matrix;
-    int     **capacity_matrix;
-    int     *parent;
-    int     ants_num;
-    int     rooms_num; 
-	int		error;
+    t_lst_point *point;
+    int         **flow_matrix;
+    int         **capacity_matrix;
+    int         *parent;
+    int         ants_num;
+    int         rooms_num; 
+	int	        error;
     
 }                  t_lemin;
+
+
+/*
+** Parser
+*/
+
+t_lst_point				*lst_create();
+t_lst_point				*lst_add(t_lst_point *lst);
+int						lst_length(t_lst_point *lst);
+t_lst_point				*lst_get_start(t_lst_point *lst);
+void					lst_free(t_lst_point *lst);
+int						lst_check(t_lst_point *lst);
+t_lst_point				*lst_get_by_name(t_lst_point *lst, char *name);
+void					lst_print_lst(t_lst_point *lst, int depth);
 
 /*
 ** Params processing
@@ -63,6 +88,12 @@ void    print_paths(t_lemin *params, int curr);
 void    print_flowmatrix(t_lemin *params);
 void    print_capmatrix(t_lemin *params);
 void    print_max_flow(t_lemin *params);
+
+/*
+** Errors
+*/
+
+void					err();
 
 /*
 **	List of errors

@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 22:52:46 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/16 14:36:55 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/19 16:14:53 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	params_init(t_lemin *params)
 	ROOMS_NUM = 0;
 	ANTS_NUM = 0;
 	ERROR = 0;
-	ROOM_NAMES = NULL;
 	FLOW_MATRIX = NULL;
 	CAP_MATRIX = NULL;
 	PARENT = NULL;
+	POINT = NULL;
 }
 
 /*

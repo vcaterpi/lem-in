@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:14:06 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/16 16:44:24 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/19 15:57:20 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void test_params(t_lemin *params)
 	/*
 	** Указываем количество комнат
 	*/
-	ROOMS_NUM = 7;
+	ROOMS_NUM = 3;
 
 	/*
 	** Задаем вручную связи между комнатами.
@@ -41,7 +41,16 @@ void test_params(t_lemin *params)
 	*/
 
 	CAP_MATRIX = ft_do_table(ROOMS_NUM, ROOMS_NUM);
+	
+	CAP_MATRIX[0][1] = 1;
+	CAP_MATRIX[0][2] = 1;
+	CAP_MATRIX[1][0] = 1;
+	CAP_MATRIX[1][2] = 1;
+	CAP_MATRIX[2][1] = 1;
+	CAP_MATRIX[2][0] = 1;
 
+	CAP_MATRIX[1][0] = 1;
+	/*
 	//Граф 7 вершин
 	CAP_MATRIX[0][1] = 1;
 	CAP_MATRIX[0][2] = 1;
@@ -59,7 +68,7 @@ void test_params(t_lemin *params)
 	CAP_MATRIX[5][6] = 1;
 	CAP_MATRIX[6][4] = 1;
 	CAP_MATRIX[6][5] = 1;
-		
+	*/
 	/*
 	//Граф 6 вершин
 	CAP_MATRIX[0][1] = 1;
