@@ -3,188 +3,373 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antondob <antondob@student.42.fr>          +#+  +:+       +#+         #
+#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/19 00:08:38 by antondob          #+#    #+#              #
-#    Updated: 2020/09/16 16:32:40 by antondob         ###   ########.fr        #
+#    Created: 2019/09/14 11:23:23 by slynell           #+#    #+#              #
+#    Updated: 2020/09/19 19:36:40 by air_must         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# EXECUTABLES
-LIB_NAME = 	libftprintf.a
-# DIRECTORIES
-OBJ_DIR = 	objs/
-INCL_DIR = 	includes/
-# HEADERS
-HEADERS = 	libft.h\
-			ft_printf.h
-# SOURCES
-SRCs = 		ft_isdigit.c\
-			ft_lstmap.c\
-			ft_memdel.c\
-			ft_putnbr.c\
-			ft_strcmp.c\
-			ft_strjoin.c\
-			ft_strncpy.c\
-			ft_strsub.c\
-			ft_isprint.c\
-			ft_lstnew.c\
-			ft_memmove.c\
-			ft_putnbr_fd.c\
-			ft_strcpy.c\
-			ft_strlcat.c\
-			ft_strnequ.c\
-			ft_strtrim.c\
-			ft_atoi.c\
-			ft_itoa.c\
-			ft_memalloc.c\
-			ft_memset.c\
-			ft_putstr.c\
-			ft_strdel.c\
-			ft_strlen.c\
-			ft_strnew.c\
-			ft_tolower.c\
-			ft_bzero.c\
-			ft_lstadd.c\
-			ft_memccpy.c\
-			ft_putchar.c\
-			ft_putstr_fd.c\
-			ft_strdup.c\
-			ft_strmap.c\
-			ft_strnstr.c\
-			ft_toupper.c\
-			ft_isalnum.c\
-			ft_lstdel.c\
-			ft_memchr.c\
-			ft_putchar_fd.c\
-			ft_strcat.c\
-			ft_strequ.c\
-			ft_strmapi.c\
-			ft_strrchr.c\
-			ft_isalpha.c\
-			ft_lstdelone.c\
-			ft_memcmp.c\
-			ft_putendl.c\
-			ft_strchr.c\
-			ft_striter.c\
-			ft_strncat.c\
-			ft_strsplit.c\
-			ft_isascii.c\
-			ft_lstiter.c\
-			ft_memcpy.c\
-			ft_putendl_fd.c\
-			ft_strclr.c\
-			ft_striteri.c\
-			ft_strncmp.c\
-			ft_strstr.c\
-			ft_split_whitespaces.c\
-			ft_sort_integer_table.c\
-			ft_factorial.c\
-			ft_is_prime.c\
-			ft_power.c\
-			ft_strchr_num.c\
-			ft_strjoin_free.c\
-			ft_strsub_free.c\
-			ft_delete_table.c\
-			ft_do_table.c\
-			get_next_line.c\
-			ft_max_2.c\
-			ft_max_3.c\
-			ft_min_2.c\
-			ft_min_3.c\
-			ft_putocta.c\
-			ft_puthex_up.c\
-			ft_puthex_low.c\
-			ft_putpointer.c\
-			ft_reverse_str.c\
-			ft_strfill.c\
-			pf_apply_params.c\
-			pf_parse_params_1.c\
-			pf_parse_params_2.c\
-			pf_char_str.c\
-			pf_itoa.c\
-			pf_print_all.c\
-			pf_process_arguments.c\
-			pf_refresh_params.c\
-			ft_printf.c\
-			f_big_int_print.c\
-			f_conv_float.c\
-			f_get_fl.c\
-			f_la_help.c\
-			f_mult.c\
-			f_pf_help.c\
-			f_pow_mult.c\
-			f_read_ll.c\
-			ft_strndup.c\
-			f_mem_error.c\
-			f_float_help.c\
-			ft_is_number.c\
-			ft_stktop.c\
-			ft_stkpush.c\
-			ft_stkpop.c\
-			ft_stkdel.c\
-			ft_stkpop_back.c\
-			ft_stkpush_back.c\
-			ft_stksize.c\
-			ft_stklast.c\
-			ft_stkdel_node.c\
-			ft_stkpush_middle.c\
-			ft_double_new.c\
-			ft_double_free.c\
-			ft_double_len.c\
-			ft_checkoverflow.c\
-			ft_qpush.c\
-			ft_qpop.c\
-			ft_qdel.c
-# OBJECTS
-OBJ = $(patsubst %.c, %.o, $(SRCs))
-# OBJECT_PATHS
-OBJ_PATH = $(addprefix $(OBJ_DIR), $(OBJ))
-# INCLUDES
-INCLUDES = $(addprefix $(INCL_DIR), $(HEADERS))
-# COMPILER
-COMPILER = gcc
-FLAGS = -Wall -Wextra -Werror
-# PATHS
-vpath %.h $(INCL_DIR)
-vpath %.o $(OBJ_DIR)
-vpath ft_double%.c srcs/table_char/
-vpath ft_%_table.c srcs/table_int/
-vpath ft_lst%.c srcs/list/
-vpath ft_str%.c srcs/string/
-vpath ft_reverse_str.c srcs/string/
-vpath ft_split_whitespaces.c srcs/string/
-vpath ft_printf.c srcs/printf/
-vpath f_%.c srcs/printf/
-vpath pf_%.c srcs/printf/
-vpath ft_mem%.c srcs/memory/
-vpath ft_bzero.c srcs/memory/
-vpath ft_put%.c srcs/put/
-vpath ft_q%.c srcs/queue/
-vpath ft_stk%.c srcs/stack/
-vpath get_next_line.c srcs/gnl/
-vpath ft_min%.c srcs/math/
-vpath ft_max%.c srcs/math/
-vpath ft_power.c srcs/math/
-vpath ft_factorial.c srcs/math/
-vpath ft_is_prime.c srcs/math/
-vpath %.c srcs/other/
+NAME = libft.a
 
-all: $(LIB_NAME)
+CC = gcc
 
-$(LIB_NAME): $(OBJ)
-		@ar rcs $(LIB_NAME) $(OBJ_PATH)
-		@ranlib $(LIB_NAME)
-		@echo "\033[0;93mLIBRARY COMPILATION: \033[1;92mSUCCESS\033[0m"
+FLAGS = -Wall -Werror -Wextra -O2
 
-$(OBJ): %.o: %.c $(INCLUDES)
-		@mkdir -p $(OBJ_DIR)
-		$(COMPILER) $(FLAGS) -I $(INCL_DIR) -c $< -o $(OBJ_DIR)$@
+SDIR = src
+
+ODIR = obj
+
+HDIR = header
+
+HEAD = libft.h
+HEAD += macros.h
+HEAD += ft_printf.h
+HEAD += ft_printf_const_data.h
+HEAD += ft_printf_errors.h
+
+# /*
+# ** ====================== SOURCE OTHER ==========================
+# */
+SDIR_OTHER = src/ft_other
+ODIR_OTHER = obj/ft_other
+
+SRC_OTHER = ft_atoill.c
+SRC_OTHER += ft_abs.c
+SRC_OTHER += ft_atoi.c
+SRC_OTHER += ft_check_integer.c
+SRC_OTHER += ft_divmod.c
+SRC_OTHER += ft_intlen.c
+SRC_OTHER += ft_isalnum.c
+SRC_OTHER += ft_isalpha.c
+SRC_OTHER += ft_isascii.c
+SRC_OTHER += ft_isdigit.c
+SRC_OTHER += ft_isprint.c
+SRC_OTHER += ft_itoa.c
+SRC_OTHER += ft_long_pow.c
+SRC_OTHER += ft_longlen.c
+SRC_OTHER += ft_pow.c
+SRC_OTHER += ft_tolower.c
+SRC_OTHER += ft_toupper.c
+SRC_OTHER += ft_uitoa_base.c
+SRC_OTHER += ft_uitoa_dec.c
+SRC_OTHER += ft_uitoa_hex.c
+SRC_OTHER += ft_ultoa_base.c
+SRC_OTHER += ft_ultoa_hex.c
+SRC_OTHER += ft_wstrlen.c
+SRC_OTHER += ft_countwords.c
+SOURCES_OTHER = $(addprefix $(SDIR_OTHER)/,$(SRC_OTHER))
+OBJECTS_OTHER = $(addprefix $(ODIR_OTHER)/,$(SRC_OTHER:.c=.o))
+
+# /*
+# ** ====================== SOURCE MEMORY ==========================
+# */
+SDIR_MEMORY = src/ft_memory
+ODIR_MEMORY = obj/ft_memory
+
+SRC_MEMORY = ft_memalloc.c
+SRC_MEMORY += ft_memccpy.c
+SRC_MEMORY += ft_memchr.c
+SRC_MEMORY += ft_memcmp.c
+SRC_MEMORY += ft_memcpy.c
+SRC_MEMORY += ft_memcpy.c
+SRC_MEMORY += ft_memdel.c
+SRC_MEMORY += ft_memmove.c
+SRC_MEMORY += ft_memset.c
+SRC_MEMORY += ft_memswap.c
+SRC_MEMORY += ft_bzero.c
+
+SOURCES_MEMORY = $(addprefix $(SDIR_MEMORY)/,$(SRC_MEMORY))
+OBJECTS_MEMORY = $(addprefix $(ODIR_MEMORY)/,$(SRC_MEMORY:.c=.o))
+
+
+# /*
+# ** ====================== SOURCE PUT ==========================
+# */
+SDIR_PUT = src/ft_put
+ODIR_PUT = obj/ft_put
+
+SRC_PUT = ft_putchar.c
+SRC_PUT += ft_putchar_fd.c
+SRC_PUT += ft_putendl.c
+SRC_PUT += ft_putendl_fd.c
+SRC_PUT += ft_putnbr.c
+SRC_PUT += ft_putnbr_fd.c
+SRC_PUT += ft_putstr.c
+SRC_PUT += ft_putstr_fd.c
+
+SOURCES_PUT = $(addprefix $(SDIR_PUT)/,$(SRC_PUT))
+OBJECTS_PUT = $(addprefix $(ODIR_PUT)/,$(SRC_PUT:.c=.o))
+
+# /*
+# ** ================= SOURCE STRING NEW ==========================
+# */
+
+SDIR_STRING = src/ft_string
+ODIR_STRING = obj/ft_string
+
+SRC_STRING = ft_str_ind.c
+SRC_STRING += ft_strany.c
+SRC_STRING += ft_strcat.c
+SRC_STRING += ft_strchr.c
+SRC_STRING += ft_strclr.c
+SRC_STRING += ft_strcmp.c
+SRC_STRING += ft_strcpy.c
+SRC_STRING += ft_strdel.c
+SRC_STRING += ft_strdup.c
+SRC_STRING += ft_strequ.c
+SRC_STRING += ft_striter.c
+SRC_STRING += ft_striteri.c
+SRC_STRING += ft_strjoin.c
+SRC_STRING += ft_strlcat.c
+SRC_STRING += ft_strlen.c
+SRC_STRING += ft_strmap.c
+SRC_STRING += ft_strmapi.c
+SRC_STRING += ft_strncat.c
+SRC_STRING += ft_strncmp.c
+SRC_STRING += ft_strncpy.c
+SRC_STRING += ft_strnequ.c
+SRC_STRING += ft_strnew.c
+SRC_STRING += ft_strnstr.c
+SRC_STRING += ft_strrchr.c
+SRC_STRING += ft_strrev.c
+SRC_STRING += ft_strsplit.c
+SRC_STRING += ft_strsplitfree.c
+SRC_STRING += ft_strstr.c
+SRC_STRING += ft_strsub.c
+SRC_STRING += ft_strtrim.c
+SRC_STRING += ft_strmerge.c
+
+SOURCES_STRING = $(addprefix $(SDIR_STRING)/,$(SRC_STRING))
+OBJECTS_STRING = $(addprefix $(ODIR_STRING)/,$(SRC_STRING:.c=.o))
+
+
+# /*
+# ** ====================== SOURCE ARRAY ==========================
+# */
+
+SDIR_ARRAY = src/ft_array
+ODIR_ARRAY = obj/ft_array
+
+SRC_ARRAY = ft_array_min.c
+SRC_ARRAY += ft_array_max.c
+SRC_ARRAY += ft_array_print.c
+SRC_ARRAY += ft_free_matrix.c
+SRC_ARRAY += ft_create_matrix.c
+SRC_ARRAY += ft_print_matrix.c
+
+SOURCES_ARRAY = $(addprefix $(SDIR_ARRAY)/,$(SRC_ARRAY))
+OBJECTS_ARRAY = $(addprefix $(ODIR_ARRAY)/,$(SRC_ARRAY:.c=.o))
+
+# /*
+# ** ====================== SOURCE GNL ============================
+# */
+
+SDIR_GNL = src/ft_gnl
+ODIR_GNL = obj/ft_gnl
+
+SRC_GNL = get_next_line.c
+
+SOURCES_GNL = $(addprefix $(SDIR_GNL)/,$(SRC_GNL))
+OBJECTS_GNL = $(addprefix $(ODIR_GNL)/,$(SRC_GNL:.c=.o))
+
+# /*
+# ** ====================== SOURCE QUEUE ============================
+# */
+
+SDIR_QUEUE = src/ft_queue
+ODIR_QUEUE = obj/ft_queue
+
+SRC_QUEUE = ft_qdel.c
+SRC_QUEUE += ft_qpop.c
+SRC_QUEUE += ft_qpush.c
+
+SOURCES_QUEUE = $(addprefix $(SDIR_QUEUE)/,$(SRC_QUEUE))
+OBJECTS_QUEUE = $(addprefix $(ODIR_QUEUE)/,$(SRC_QUEUE:.c=.o))
+
+
+
+# /*
+# ** ====================== SOURCE PRINTF ==========================
+# */
+
+SDIR_PRINTF = src/ft_printf
+ODIR_PRINTF = obj/ft_printf
+
+SRC_PRINTF = buffer_n_print.c
+SRC_PRINTF += float_processing.c
+SRC_PRINTF += float_processing_ag.c
+SRC_PRINTF += float_processing_ef.c
+SRC_PRINTF += float_processing_fast_dtoa.c
+SRC_PRINTF += float_processing_fast_ldtoa.c
+SRC_PRINTF += float_processing_fxd_dbl.c
+SRC_PRINTF += ft_printf.c
+SRC_PRINTF += ft_printf_utils.c
+SRC_PRINTF += get_format_arg.c
+SRC_PRINTF += number_processing.c
+SRC_PRINTF += string_processing.c
+SRC_PRINTF += ft_assert.c
+
+SOURCES_PRINTF = $(addprefix $(SDIR_PRINTF)/,$(SRC_PRINTF))
+OBJECTS_PRINTF = $(addprefix $(ODIR_PRINTF)/,$(SRC_PRINTF:.c=.o))
+
+# /*
+# ** ====================== SOURCE LST ==========================
+# */
+
+SDIR_LST = src/ft_lst
+ODIR_LST = obj/ft_lst
+
+SRC_LST = ft_lstadd.c
+SRC_LST += ft_lstaddcontent.c
+SRC_LST += ft_lstdel.c
+SRC_LST += ft_lstdelone.c
+SRC_LST += ft_lstiter.c
+SRC_LST += ft_lstlink.c
+SRC_LST += ft_lstmap.c
+SRC_LST += ft_lstnew.c
+SRC_LST += ft_lstpushback.c
+SRC_LST += ft_lstprint.c
+SRC_LST += ft_lstprint_fd.c
+
+
+SOURCES_LST = $(addprefix $(SDIR_LST)/,$(SRC_LST))
+OBJECTS_LST = $(addprefix $(ODIR_LST)/,$(SRC_LST:.c=.o))
+
+
+HEADERS = $(addprefix $(HDIR)/,$(HEAD))
+
+.PHONY: clean fclean all re
+
+all : $(NAME)
+	@2> tmp.log
+	@@echo "Project $(NAME) build successfully \c" >> tmp.log
+
+$(NAME) :	$(OBJECTS_MEMORY)  $(OBJECTS_PUT) $(OBJECTS_STRING) $(OBJECTS_GNL) $(OBJECTS_QUEUE) \
+			$(OBJECTS_PRINTF) $(OBJECTS_ARRAY) $(OBJECTS_LST) $(HEADERS)  $(OBJECTS_OTHER) Makefile
+	@ar rc  $(NAME) $? 2> tmp.log
+	@ranlib $(NAME) 2> tmp.log
+	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
+
+# /*
+# ** ====================== MAKE MEMORY ==========================
+# */
+$(ODIR_MEMORY)/%.o : $(SDIR_MEMORY)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_memory/ft_memalloc.c ]]; then \
+		echo "\nMake \033[33m$(NAME):\033[0m\c"; \
+	fi
+	@if [[ $< == src/ft_memory/ft_memalloc.c ]]; then \
+		echo "\n > Make \033[33mmemory\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR) 2> tmp.log
+	@mkdir -p $(ODIR_MEMORY) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE PUT ==========================
+# */
+$(ODIR_PUT)/%.o : $(SDIR_PUT)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_put/ft_putchar.c ]]; then \
+		echo "\n > Make \033[33mput\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_PUT) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE STRING ==========================
+# */
+$(ODIR_STRING)/%.o : $(SDIR_STRING)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_string/ft_str_ind.c ]]; then \
+		echo "\n > Make \033[33mstring\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_STRING) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE GNL ==========================
+# */
+$(ODIR_GNL)/%.o : $(SDIR_GNL)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_gnl/get_next_line.c ]]; then \
+		echo "\n > Make \033[33mgnl\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_GNL) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+# /*
+# ** ====================== MAKE QUEUE ==========================
+# */
+$(ODIR_QUEUE)/%.o : $(SDIR_QUEUE)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_queue/ft_qdel.c ]]; then \
+		echo "\n > Make \033[33mqueue\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_QUEUE) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+# /*
+# ** ====================== MAKE LST ==========================
+# */
+$(ODIR_LST)/%.o : $(SDIR_LST)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_lst/ft_lstadd.c ]]; then \
+		echo "\n > Make \033[33mlist\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_LST) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE ARRAY ==========================
+# */
+$(ODIR_ARRAY)/%.o : $(SDIR_ARRAY)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_array/ft_array_min.c ]]; then \
+		echo "\n > Make \033[33marray\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_ARRAY) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE PRINTF ==========================
+# */
+$(ODIR_PRINTF)/%.o : $(SDIR_PRINTF)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_printf/buffer_n_print.c ]]; then \
+		echo "\n > Make \033[33mprintf\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_PRINTF) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE OTHER ==========================
+# */
+$(ODIR_OTHER)/%.o : $(SDIR_OTHER)/%.c $(HEADERS) Makefile
+	@if [[ $< == src/ft_other/ft_atoill.c ]]; then \
+		echo "\n > Make \033[33mother\033[0m\tfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_OTHER) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
 
 clean:
-		@rm -rf $(OBJ_DIR)
+	@rm -rf $(ODIR) 2> tmp.log
 
 fclean: clean
-		@rm -f $(LIB_NAME)
+	@rm -f $(NAME) 2> tmp.log
+	@echo "\033[31m> Clear $(NAME)\033[0m"
 
 re: fclean all
+
+# $(OBJECTS)  $(OBJECTS_PRINTF)  $(OBJECTS_ARRAY) $(OBJECTS_STRING) $(HEADERS)
+
+# printOther $(OBJECTS) printPrintf $(OBJECTS_PRINTF) printArray $(OBJECTS_ARRAY) $(OBJECTS_STRING) $(HEADERS)

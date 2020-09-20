@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_create.c                                       :+:      :+:    :+:   */
+/*   ft_print_matrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/19 17:20:33 by air_must         ###   ########.fr       */
+/*   Created: 2020/09/19 17:06:56 by air_must          #+#    #+#             */
+/*   Updated: 2020/09/19 17:12:45 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/lem_in.h"
+#include "libft.h"
 
-t_lst_point *lst_create()
+void ft_print_matrix_int(int **matrix, int count)
 {
-	t_lst_point *lst;
+	int i;
+	int j;
 
-	if (!(lst = (t_lst_point *)malloc(sizeof(t_lst_point))))
-		lemin_error();
-	lst->name = NULL;
-	lst->next = NULL;
-	lst->prev = NULL;
-	lst->x = -1;
-	lst->y = -1;
-	lst->ex = -1;
-	lst->id = -1;
-	return (lst);
+	i = -1;
+	ft_printf("Matrix: \n");
+	while (++i < count)
+	{
+		j = -1;
+		while (++j < count)
+			ft_printf("%d ", matrix[i][j]);
+		ft_printf("\n");
+	}
 }

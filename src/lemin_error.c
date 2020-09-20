@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_create.c                                       :+:      :+:    :+:   */
+/*   lemin_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/19 17:20:33 by air_must         ###   ########.fr       */
+/*   Created: 2019/07/10 02:06:07 by hbhuiyan          #+#    #+#             */
+/*   Updated: 2020/09/19 17:20:03 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/lem_in.h"
+#include "../header/lem_in.h"
 
-t_lst_point *lst_create()
+void	lemin_error()
 {
-	t_lst_point *lst;
-
-	if (!(lst = (t_lst_point *)malloc(sizeof(t_lst_point))))
-		lemin_error();
-	lst->name = NULL;
-	lst->next = NULL;
-	lst->prev = NULL;
-	lst->x = -1;
-	lst->y = -1;
-	lst->ex = -1;
-	lst->id = -1;
-	return (lst);
+	ft_putstr_fd("ERROR", 2);
+	exit(EXIT_FAILURE);
 }

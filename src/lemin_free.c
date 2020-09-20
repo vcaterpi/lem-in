@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_create.c                                       :+:      :+:    :+:   */
+/*   lemin_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/19 17:20:33 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/19 21:10:38 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/lem_in.h"
+#include "../header/lem_in.h"
 
-t_lst_point *lst_create()
+void	lemin_free(t_lemin *lem)
 {
-	t_lst_point *lst;
-
-	if (!(lst = (t_lst_point *)malloc(sizeof(t_lst_point))))
-		lemin_error();
-	lst->name = NULL;
-	lst->next = NULL;
-	lst->prev = NULL;
-	lst->x = -1;
-	lst->y = -1;
-	lst->ex = -1;
-	lst->id = -1;
-	return (lst);
+	ft_free_matrix_int(&CAP_MATRIX, ROOMS_NUM);
+	// ft_free_matrix_int(&FLOW_MATRIX, ROOMS_NUM);
+	lst_free(ROOMS);
+	free(lem);
+	lem = NULL;
 }
