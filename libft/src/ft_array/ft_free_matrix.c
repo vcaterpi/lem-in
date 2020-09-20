@@ -6,7 +6,7 @@
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:15:36 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/19 19:43:29 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/20 20:51:34 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void	ft_free_matrix_char(char ***matrix, int count_row)
 
 void	ft_free_matrix_int(int ***matrix, int count_row)
 {
-	int i;
-
-	i = -1;
-	while (++i < count_row)
-		free((*matrix)[i]);
+	if (!matrix || !(*matrix))
+		return ;
+	while (--count_row >= 0)
+		free((*matrix)[count_row]);
 	free(*matrix);
 	*matrix = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/19 21:07:52 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 00:44:49 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ void print_max_flow(t_lemin *lem)
 /*
 ** Вывод всех найденных непересекающихся путей
 */
-
 void print_paths(t_lemin *lem, int curr)
 {
 	int j;
-
 	if (curr == ROOMS_NUM - 1)
 	{
 		ft_printf("\n");
@@ -63,7 +61,6 @@ void print_paths(t_lemin *lem, int curr)
 /*
 ** Вывод матрицы остаточных пропускных способностей
 */
-
 void print_capmatrix(t_lemin *lem)
 {
 	int i;

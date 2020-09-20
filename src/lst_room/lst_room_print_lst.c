@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin_free.c                                       :+:      :+:    :+:   */
+/*   lst_print_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 00:10:41 by air_must         ###   ########.fr       */
+/*   Created: 2019/07/07 11:02:27 by hbhuiyan          #+#    #+#             */
+/*   Updated: 2020/09/20 03:44:22 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/lem_in.h"
+#include "../../header/lem_in.h"
 
-void	lemin_free(t_lemin *lem)
+void	lst_print_lst(t_lst_point *lst, int depth)
 {
-	ft_free_matrix_int(&CAP_MATRIX, ROOMS_NUM);
-	ft_free_matrix_int(&FLOW_MATRIX, ROOMS_NUM);
-	lst_free(ROOMS);
-	lst_path_free(PATH);
-	lst_ants_free(ANTS);
-	free(PARENT);
-	free(lem);
-	lem = NULL;
+	t_lst_point	*temp;
+	int			i;
+
+	temp = lst;
+	while (temp && temp->next)
+	{
+		i = -1;
+		while (++i < depth)
+			ft_printf("\t ");
+		ft_printf("name: %s\tid: %d\tx: %d\ty: %d\tex: %d\n", temp->name, temp->id, temp->x, temp->y, temp->ex);
+		temp = temp->next;
+	}
+	return ;
 }

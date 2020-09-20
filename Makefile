@@ -6,7 +6,7 @@
 #    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/09/19 19:39:05 by air_must         ###   ########.fr        #
+#    Updated: 2020/09/21 00:12:57 by air_must         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem_in
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -O2
+FLAGS = -Wall
 # -Wall -Werror -Wextra -O2
 
 # /*
@@ -40,6 +40,8 @@ SRCS += lemin_create.c
 SRCS += lemin_error.c
 SRCS += lemin_read.c
 SRCS += lemin_free.c
+SRCS += lemin_path.c
+SRCS += lemin_ants.c
 SRCS += algo_apply.c
 SRCS += algo_help.c
 SRCS += print_test.c
@@ -52,36 +54,58 @@ SOURCES = $(addprefix $(SDIR)/,$(SRCS))
 OBJECTS = $(addprefix $(ODIR)/,$(SRCS:.c=.o))
 
 # /*
-# ** ====================== SOURCE LST FILE ==========================
+# ** ====================== SOURCE LST ROOM ==========================
 # */
-SDIR_LST_FILE = src/lst_point
-ODIR_LST_FILE = obj/lst_point
+SDIR_LST_ROOM = src/lst_room
+ODIR_LST_ROOM = obj/lst_room
 
-SRC_LST_FILE = lst_add.c
-SRC_LST_FILE += lst_create.c
-SRC_LST_FILE += lst_free.c
-SRC_LST_FILE += lst_get_start.c
+SRC_LST_ROOM = lst_room_add.c
+SRC_LST_ROOM += lst_room_create.c
+SRC_LST_ROOM += lst_room_free.c
+SRC_LST_ROOM += lst_room_get_start.c
+SRC_LST_ROOM += lst_room_length.c
+SRC_LST_ROOM += lst_room_get_by_name.c
+SRC_LST_ROOM += lst_room_get_by_id.c
+SRC_LST_ROOM += lst_room_check.c
+SRC_LST_ROOM += lst_room_print_lst.c
+SRC_LST_ROOM += lst_room_update_id.c
 
-# SRC_LST_FILE += ls_lst_reverse.c
-# SRC_LST_FILE += ls_lst_swap.c
-SRC_LST_FILE += lst_length.c
-# SRC_LST_FILE += ls_lst_sort_by_atime.c
-# SRC_LST_FILE += ls_lst_sort_by_ctime.c
-# SRC_LST_FILE += ls_lst_sort_by_mtime.c
-# SRC_LST_FILE += ls_lst_sort_by_name.c
-# SRC_LST_FILE += ls_lst_is_root.c
-SRC_LST_FILE += lst_get_by_name.c
-SRC_LST_FILE += lst_check.c
-SRC_LST_FILE += lst_print_lst.c
-SRC_LST_FILE += lst_update_id.c
-# SRC_LST_FILE += ls_lst_insert.c
-# SRC_LST_FILE += ls_lst_ind.c
-# SRC_LST_FILE += ls_lst_name_max_length.c
+SOURCES_LST_ROOM = $(addprefix $(SDIR_LST_ROOM)/,$(SRC_LST_ROOM))
+OBJECTS_LST_ROOM = $(addprefix $(ODIR_LST_ROOM)/,$(SRC_LST_ROOM:.c=.o))
 
+# /*
+# ** ====================== SOURCE LST ANTS ==========================
+# */
+SDIR_LST_ANTS = src/lst_ants
+ODIR_LST_ANTS = obj/lst_ants
 
+SRC_LST_ANTS = lst_ants_add.c
+SRC_LST_ANTS += lst_ants_create.c
+SRC_LST_ANTS += lst_ants_free.c
+SRC_LST_ANTS += lst_ants_get_start.c
+SRC_LST_ANTS += lst_ants_length.c
+SRC_LST_ANTS += lst_ants_get_by_id.c
+SRC_LST_ANTS += lst_ants_print_lst.c
 
-SOURCES_LST_FILE = $(addprefix $(SDIR_LST_FILE)/,$(SRC_LST_FILE))
-OBJECTS_LST_FILE = $(addprefix $(ODIR_LST_FILE)/,$(SRC_LST_FILE:.c=.o))
+SOURCES_LST_ANTS = $(addprefix $(SDIR_LST_ANTS)/,$(SRC_LST_ANTS))
+OBJECTS_LST_ANTS = $(addprefix $(ODIR_LST_ANTS)/,$(SRC_LST_ANTS:.c=.o))
+
+# /*
+# ** ====================== SOURCE LST PATH ==========================
+# */
+SDIR_LST_PATH = src/lst_path
+ODIR_LST_PATH = obj/lst_path
+
+SRC_LST_PATH = lst_path_add.c
+SRC_LST_PATH += lst_path_create.c
+SRC_LST_PATH += lst_path_free.c
+SRC_LST_PATH += lst_path_get_start.c
+SRC_LST_PATH += lst_path_length.c
+SRC_LST_PATH += lst_path_get_by_id.c
+SRC_LST_PATH += lst_path_print_lst.c
+
+SOURCES_LST_PATH = $(addprefix $(SDIR_LST_PATH)/,$(SRC_LST_PATH))
+OBJECTS_LST_PATH = $(addprefix $(ODIR_LST_PATH)/,$(SRC_LST_PATH:.c=.o))
 
 
 .PHONY: clean fclean all re
@@ -91,8 +115,8 @@ all :  $(LIBFT) $(NAME)
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 
-$(NAME) :  $(LIBFT) $(OBJECTS) $(OBJECTS_LST_FILE) $(INCLUDES) Makefile
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_LST_FILE)  -I $(IDIR) $(LIBFT)
+$(NAME) :  $(LIBFT) $(OBJECTS) $(OBJECTS_LST_ROOM) $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH)  $(INCLUDES) Makefile
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_LST_ROOM)  $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH)  -I $(IDIR) $(LIBFT)
 	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
 
 # /*
@@ -102,13 +126,36 @@ $(LIBFT) :
 	@make -C $(LDIR) 2> tmp.log
 
 # /*
-# ** ====================== MAKE LST POINT ==========================
+# ** ====================== MAKE LST PATH ==========================
 # */
-$(ODIR_LST_FILE)/%.o : $(SDIR_LST_FILE)/%.c $(INCLUDES) Makefile
-	@if [[ $< == src/lst_point/lst_add.c ]]; then \
-		echo "\n > Make \033[33mlst_point\033[0mfunctions:\c"; \
+$(ODIR_LST_PATH)/%.o : $(SDIR_LST_PATH)/%.c $(INCLUDES) Makefile
+	@if [[ $< == src/lst_path/lst_path_add.c ]]; then \
+		echo "\n > Make \033[33mlst_path\033[0mfunctions:\c"; \
 	fi
-	@mkdir -p $(ODIR_LST_FILE) 2> tmp.log
+	@mkdir -p $(ODIR_LST_PATH) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** ====================== MAKE LST ANTS ==========================
+# */
+$(ODIR_LST_ANTS)/%.o : $(SDIR_LST_ANTS)/%.c $(INCLUDES) Makefile
+	@if [[ $< == src/lst_ants/lst_ants_add.c ]]; then \
+		echo "\n > Make \033[33mlst_ants\033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_LST_ANTS) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+# /*
+# ** ====================== MAKE LST ROOM ==========================
+# */
+$(ODIR_LST_ROOM)/%.o : $(SDIR_LST_ROOM)/%.c $(INCLUDES) Makefile
+	@if [[ $< == src/lst_room/lst_room_add.c ]]; then \
+		echo "\n > Make \033[33mlst_room\033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_LST_ROOM) 2> tmp.log
 	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
 	@echo "\033[32m.\033[0m\c"
 

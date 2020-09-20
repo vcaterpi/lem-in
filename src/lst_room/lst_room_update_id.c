@@ -1,25 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin_free.c                                       :+:      :+:    :+:   */
+/*   lst_room_update_id.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 00:10:41 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 00:43:37 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/lem_in.h"
+#include "../../header/lem_in.h"
 
-void	lemin_free(t_lemin *lem)
+t_lst_point *lst_update_id(t_lst_point *tf)
 {
-	ft_free_matrix_int(&CAP_MATRIX, ROOMS_NUM);
-	ft_free_matrix_int(&FLOW_MATRIX, ROOMS_NUM);
-	lst_free(ROOMS);
-	lst_path_free(PATH);
-	lst_ants_free(ANTS);
-	free(PARENT);
-	free(lem);
-	lem = NULL;
+	t_lst_point *temp_lst;
+	int c;
+	int flag;
+
+	c = 1;
+	flag = 0;
+	temp_lst = tf;
+	while (temp_lst && temp_lst->next)
+	{
+		if (temp_lst->ex == 0)
+		{
+			temp_lst->id = 0;
+			flag++;
+		}
+		else if (temp_lst->ex == 1)
+		{
+			temp_lst->id = lst_length(tf) - 2;
+			flag++;
+		}
+		else if (temp_lst->id != -1)
+		{
+			temp_lst->id = c++;
+		}
+		temp_lst = temp_lst->next;
+	}
+	if(flag != 2)
+		lemin_error();
+	return (tf);
 }

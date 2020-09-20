@@ -6,7 +6,7 @@
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 17:21:40 by air_must          #+#    #+#             */
-/*   Updated: 2020/09/19 19:21:09 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 00:41:17 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_lst_point *reconstr(t_lst_point *rooms, char *line, int ex)
 	if (operand[0] && operand[1] && operand[2] && !operand[3])
 	{
 		rooms->name = ft_strdup(operand[0]);
-			rooms->x = ft_atoi(operand[1]);
-			rooms->y = ft_atoi(operand[2]);
+		rooms->x = ft_atoi(operand[1]);
+		rooms->y = ft_atoi(operand[2]);
 		rooms->id = lst_length(rooms) - 1;
 		rooms->ex = ex;
 		if (!lst_check(rooms))
@@ -30,6 +30,7 @@ t_lst_point *reconstr(t_lst_point *rooms, char *line, int ex)
 		ft_strsplitfree(&operand);
 		return (rooms);
 	}
+
 	ft_strsplitfree(&operand);
 	operand = ft_strsplit(line, '-');
 	if (operand[0] && operand[1] && !operand[2])
@@ -37,28 +38,30 @@ t_lst_point *reconstr(t_lst_point *rooms, char *line, int ex)
 		ft_strsplitfree(&operand);
 		return (rooms);
 	}
+	ft_strsplitfree(&operand);
 	return (NULL);
 }
 
 t_lst_point *to_read_room(t_lst_point *rooms, int *is_ref, int *ex, char *line)
 {
-	if (ft_strequ(line, "##start"))
+	if ((ft_strequ(line, "##start") || ft_strequ(line, "##end")) && *ex != -1)
+		lemin_error();
+	else if (ft_strequ(line, "##start") && *ex == -1)
 		*ex = 0;
-	else if (ft_strequ(line, "##end"))
+	else if (ft_strequ(line, "##end") && *ex == -1)
 		*ex = 1;
 	else if (line[0] != '#' && line[0] != 'L')
 	{
-
 		rooms = (rooms) ? lst_add(rooms) : lst_create();
-
 		rooms = reconstr(rooms, line, *ex);
+		if (rooms == NULL)
+			lemin_error();
 		if (rooms->id == -1)
 			*is_ref = 1;
 		*ex = -1;
 	}
 	return (rooms);
 }
-
 
 t_lemin *to_read_link(t_lst_point *rooms, char *line, int is_ref, t_lemin *lem)
 {
@@ -90,6 +93,22 @@ t_lemin *to_read_link(t_lst_point *rooms, char *line, int is_ref, t_lemin *lem)
 	return lem;
 }
 
+t_lst_ants *create_ants(t_lemin *lem)
+{
+	int i;
+	t_lst_ants *ants;
+
+	i = -1;
+	ants = lst_ants_create();
+	ants->ant_id = 0;
+	while (++i < ANTS_NUM)
+	{
+		ants = lst_ants_add(ants);
+		ants->ant_id = i;
+	}
+	return (lst_ants_get_start(ants));
+}
+
 t_lst_point *lemin_read(t_lst_point *rooms, t_lemin *lem)
 {
 	char *line;
@@ -104,6 +123,7 @@ t_lst_point *lemin_read(t_lst_point *rooms, t_lemin *lem)
 		{
 			is_ref += 1;
 			ANTS_NUM = ft_atoi(line);
+			ANTS = create_ants(lem);
 		}
 		else if (ANTS_NUM == -1)
 			lemin_error();
@@ -121,4 +141,3 @@ t_lst_point *lemin_read(t_lst_point *rooms, t_lemin *lem)
 	}
 	return (rooms);
 }
-

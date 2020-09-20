@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin_free.c                                       :+:      :+:    :+:   */
+/*   lst_path_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 00:10:41 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/20 23:58:57 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/lem_in.h"
+#include "../../header/lem_in.h"
 
-void	lemin_free(t_lemin *lem)
+void	lst_path_free(t_lst_path *lst)
 {
-	ft_free_matrix_int(&CAP_MATRIX, ROOMS_NUM);
-	ft_free_matrix_int(&FLOW_MATRIX, ROOMS_NUM);
-	lst_free(ROOMS);
-	lst_path_free(PATH);
-	lst_ants_free(ANTS);
-	free(PARENT);
-	free(lem);
-	lem = NULL;
+	t_lst_path *temp_lst;
+
+	if (lst)
+	{
+		if (lst->prev)
+			lst = lst_path_get_start(lst);
+		while (lst)
+		{
+			temp_lst = lst->next;
+			free(lst->rooms);
+			free(lst);
+			lst = temp_lst;
+		}
+		lst = NULL;
+	}
+	free(lst);
+	lst = NULL;
 }

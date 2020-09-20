@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_lst_free.c                                      :+:      :+:    :+:   */
+/*   lst_get_start.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/18 01:06:04 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/20 21:04:37 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-void	lst_free(t_lst_point *lst)
+t_lst_ants		*lst_ants_get_start(t_lst_ants *lst)
 {
-	t_lst_point *temp_lst;
+	t_lst_ants	*temp_lst;
 
-	if (lst)
-	{
-		if (lst->prev)
-			lst = lst_get_start(lst);
-		while (lst)
-		{
-			temp_lst = lst->next;
-			free(lst->name);
-			free(lst);
-			lst = temp_lst;
-		}
-		lst = NULL;
-	}
+	temp_lst = lst;
+	while (temp_lst && temp_lst->prev)
+		temp_lst = temp_lst->prev;
+	return (temp_lst);
 }

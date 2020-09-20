@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_print_lst.c                                    :+:      :+:    :+:   */
+/*   lst_ants_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 11:02:27 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/18 01:08:22 by air_must         ###   ########.fr       */
+/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
+/*   Updated: 2020/09/20 23:57:33 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-void	lst_print_lst(t_lst_point *lst, int depth)
+void	lst_ants_free(t_lst_ants *lst)
 {
-	t_lst_point	*temp;
-	int			i;
+	t_lst_ants *temp_lst;
 
-	temp = lst;
-	while (temp && temp->next)
+	if (lst)
 	{
-		i = -1;
-		while (++i < depth)
-			ft_printf("\t");
-		ft_printf("name: %s\tid: %d\tx: %d\ty: %d\tex: %d\n", temp->name, temp->id, temp->x, temp->y, temp->ex);
-		temp = temp->next;
+		if (lst->prev)
+			lst = lst_ants_get_start(lst);
+		while (lst)
+		{
+			temp_lst = lst->next;
+			free(lst);
+			lst = temp_lst;
+		}
+		lst = NULL;
 	}
-	return ;
+	free(lst);
+	lst = NULL;
 }

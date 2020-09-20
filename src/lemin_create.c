@@ -6,7 +6,7 @@
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/19 19:24:03 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/20 21:46:18 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_lemin *lemin_create()
 	PARENT = NULL;
 	FLOW_MATRIX = NULL;
 	ANTS_NUM = -1;
+	ANTS = NULL;
 	ROOMS_NUM = -1;
 	ROOMS = lst_create();
+	PATH = NULL;
 	return (lem);
 }
