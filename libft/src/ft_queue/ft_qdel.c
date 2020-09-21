@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_qdel.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 13:58:35 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/04 14:23:10 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/21 14:57:49 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void 	ft_qdel(t_queue **head)
+void	ft_qdel(t_queue **head)
 {
 	t_queue *tmp1;
 	t_queue *tmp2;

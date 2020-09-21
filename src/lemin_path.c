@@ -1,21 +1,20 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_test.c                                       :+:      :+:    :+:   */
+/*   lemin_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/20 22:15:10 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 15:01:50 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-void get_path_room(t_lemin *lem, int curr, int ind, t_lst_path *path)
+void	get_path_room(t_lemin *lem, int curr, int ind, t_lst_path *path)
 {
-	int j;
+	int	j;
 
 	path->rooms[ind] = curr;
 	if (curr == ROOMS_NUM - 1)
@@ -26,24 +25,24 @@ void get_path_room(t_lemin *lem, int curr, int ind, t_lst_path *path)
 			get_path_room(lem, j, ind + 1, path);
 }
 
-int get_path_length(t_lemin *lem, int curr)
+int		get_path_length(t_lemin *lem, int curr)
 {
-	int j;
+	int	j;
 
 	if (curr == ROOMS_NUM - 1)
 		return (1);
 	j = -1;
 	while (++j < ROOMS_NUM)
 		if (FLOW_MATRIX[curr][j] == 1)
-			return get_path_length(lem, j) + 1;
+			return (get_path_length(lem, j) + 1);
 	return (0);
 }
 
-void get_path(t_lemin *lem)
+void	get_path(t_lemin *lem)
 {
-	int j;
-	int s;
-	t_lst_path *path;
+	int			j;
+	int			s;
+	t_lst_path	*path;
 
 	j = -1;
 	s = 0;
@@ -60,7 +59,6 @@ void get_path(t_lemin *lem)
 			get_path_room(lem, j, 1, path);
 		}
 	PATH = lst_path_get_start(path);
-	if(PATH == NULL)
+	if (PATH == NULL)
 		lemin_error();
-	return ;
 }

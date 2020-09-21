@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lst_path_create.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/20 22:35:33 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 14:49:56 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-t_lst_path *lst_path_create()
+t_lst_path	*lst_path_create(void)
 {
 	t_lst_path *lst;
 

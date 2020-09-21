@@ -1,35 +1,33 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_test.c                                       :+:      :+:    :+:   */
+/*   lemin_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/20 22:15:10 by air_must         ###   ########.fr       */
+/*   Created: 2020/09/21 15:00:38 by slynell           #+#    #+#             */
+/*   Updated: 2020/09/21 15:00:39 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-
-void distribution_ants(t_lemin *lem)
+void			distribution_ants(t_lemin *lem)
 {
-	int	i;
-	int mini;
-	int id;
-	t_lst_path *path;
+	int			i;
+	int			mini;
+	int			id;
+	t_lst_path	*path;
 
 	i = -1;
-	while(++i < ANTS_NUM)
+	while (++i < ANTS_NUM)
 	{
 		path = PATH;
 		mini = INT32_MAX;
 		id = 0;
-		while(path)
+		while (path)
 		{
-			if(path->counter < mini)
+			if (path->counter < mini)
 			{
 				mini = path->counter;
 				id = path->path_id;

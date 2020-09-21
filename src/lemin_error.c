@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 02:06:07 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/19 17:20:03 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 15:01:57 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-void	lemin_error()
+void	lemin_error(void)
 {
 	ft_putstr_fd("ERROR", 2);
 	exit(EXIT_FAILURE);

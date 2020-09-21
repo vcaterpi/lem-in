@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/20 23:53:31 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 14:56:09 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define LEM_IN_H
 
 # include "../libft/header/libft.h"
-
-enum					{ERROR, USAGE};
 
 # define ANTS_NUM		lem->ants_num
 # define ANTS			lem->ants
@@ -55,7 +53,6 @@ typedef struct			s_lst_path {
 	int					counter;
 	int					*rooms;
 }						t_lst_path;
-
 
 typedef struct			s_lemin {
 	int					ants_num;
@@ -105,8 +102,6 @@ void					lst_path_free(t_lst_path *lst);
 t_lst_path				*lst_path_get_by_id(t_lst_path *lst, int ant_id);
 void					lst_path_print_lst(t_lst_path *lst, int depth);
 
-
-
 /*
 ** ========================== LEM_IN FUNCTION =================================
 */
@@ -117,9 +112,6 @@ t_lst_point				*lemin_read(t_lst_point *tf, t_lemin *lem);
 void					lemin_free(t_lemin *lem);
 void					get_path(t_lemin *lem);
 void					distribution_ants(t_lemin *lem);
-
-
-
 
 /*
 ** Params processing
@@ -147,6 +139,5 @@ void					print_paths(t_lemin *lem, int curr);
 void					print_flowmatrix(t_lemin *lem);
 void					print_capmatrix(t_lemin *lem);
 void					print_max_flow(t_lemin *lem);
-
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_print_lst.c                                    :+:      :+:    :+:   */
+/*   lst_ants_print_lst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 11:02:27 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/20 21:10:05 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 14:55:15 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	lst_ants_print_lst(t_lst_ants *lst, int depth)
 		i = -1;
 		while (++i < depth)
 			ft_printf("\t ");
-		ft_printf("Id ant: %d\tid room: %d\tid path: %d\tindex: %d\n", temp->ant_id, temp->room_id, temp->path_id, temp->index);
+		ft_printf("Id ant: %d\tid room: %d\tid path: %d\tindex: %d\n",\
+			temp->ant_id, temp->room_id, temp->path_id, temp->index);
 		temp = temp->next;
 	}
 	return ;

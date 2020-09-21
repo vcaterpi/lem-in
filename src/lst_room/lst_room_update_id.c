@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lst_room_update_id.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 00:43:37 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 15:12:20 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-t_lst_point *lst_update_id(t_lst_point *tf)
+t_lst_point		*lst_update_id(t_lst_point *tf)
 {
-	t_lst_point *temp_lst;
-	int c;
-	int flag;
+	t_lst_point	*temp_lst;
+	int			c;
+	int			flag;
 
 	c = 1;
 	flag = 0;
@@ -34,12 +34,9 @@ t_lst_point *lst_update_id(t_lst_point *tf)
 			flag++;
 		}
 		else if (temp_lst->id != -1)
-		{
 			temp_lst->id = c++;
-		}
 		temp_lst = temp_lst->next;
 	}
-	if(flag != 2)
-		lemin_error();
+	IF_TRUE(flag != 2, lemin_error());
 	return (tf);
 }

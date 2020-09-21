@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_matrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/19 17:06:56 by air_must          #+#    #+#             */
-/*   Updated: 2020/09/19 17:12:45 by air_must         ###   ########.fr       */
+/*   Created: 2020/09/21 14:58:41 by slynell           #+#    #+#             */
+/*   Updated: 2020/09/21 14:58:42 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_print_matrix_int(int **matrix, int count)
+void	ft_print_matrix_int(int **matrix, int count)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	ft_printf("Matrix: \n");

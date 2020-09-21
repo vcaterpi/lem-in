@@ -3,46 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/19 17:21:40 by air_must          #+#    #+#             */
-/*   Updated: 2020/09/21 00:41:17 by air_must         ###   ########.fr       */
+/*   Created: 2020/09/21 15:08:42 by slynell           #+#    #+#             */
+/*   Updated: 2020/09/21 15:13:58 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-t_lst_point *reconstr(t_lst_point *rooms, char *line, int ex)
+t_lst_point	*reconstr(t_lst_point *rooms, char *line, int ex)
 {
-	char **operand;
-	rooms->x = 0;
+	char		**operand;
+	t_lst_point	*temp;
 
+	temp = rooms;
+	rooms->x = 0;
 	operand = ft_strsplit(line, ' ');
 	if (operand[0] && operand[1] && operand[2] && !operand[3])
 	{
-		rooms->name = ft_strdup(operand[0]);
-		rooms->x = ft_atoi(operand[1]);
-		rooms->y = ft_atoi(operand[2]);
-		rooms->id = lst_length(rooms) - 1;
-		rooms->ex = ex;
-		if (!lst_check(rooms))
+		temp->name = ft_strdup(operand[0]);
+		temp->x = ft_atoi(operand[1]);
+		temp->y = ft_atoi(operand[2]);
+		temp->id = lst_length(temp) - 1;
+		temp->ex = ex;
+		if (!lst_check(temp))
 			lemin_error();
 		ft_strsplitfree(&operand);
-		return (rooms);
+		return (temp);
 	}
-
 	ft_strsplitfree(&operand);
 	operand = ft_strsplit(line, '-');
-	if (operand[0] && operand[1] && !operand[2])
-	{
-		ft_strsplitfree(&operand);
-		return (rooms);
-	}
+	if (!(operand[0] && operand[1] && !operand[2]))
+		temp = NULL;
 	ft_strsplitfree(&operand);
-	return (NULL);
+	return (temp);
 }
 
-t_lst_point *to_read_room(t_lst_point *rooms, int *is_ref, int *ex, char *line)
+t_lst_point	*to_read_room(t_lst_point *rooms, int *is_ref, int *ex, char *line)
 {
 	if ((ft_strequ(line, "##start") || ft_strequ(line, "##end")) && *ex != -1)
 		lemin_error();
@@ -63,9 +61,10 @@ t_lst_point *to_read_room(t_lst_point *rooms, int *is_ref, int *ex, char *line)
 	return (rooms);
 }
 
-t_lemin *to_read_link(t_lst_point *rooms, char *line, int is_ref, t_lemin *lem)
+t_lemin		*to_read_link(t_lst_point *rooms, char *line, int is_ref,\
+			t_lemin *lem)
 {
-	char **operand;
+	char	**operand;
 
 	if (is_ref == 1)
 	{
@@ -77,10 +76,13 @@ t_lemin *to_read_link(t_lst_point *rooms, char *line, int is_ref, t_lemin *lem)
 		operand = ft_strsplit(line, '-');
 		if (operand[0] && operand[1] && !operand[2])
 		{
-			if (lst_get_by_name(rooms, operand[0]) != NULL && lst_get_by_name(rooms, operand[1]) != NULL)
+			if (lst_get_by_name(rooms, operand[0]) != NULL &&\
+				lst_get_by_name(rooms, operand[1]) != NULL)
 			{
-				CAP_MATRIX[lst_get_by_name(rooms, operand[0])->id][lst_get_by_name(rooms, operand[1])->id] = 1;
-				CAP_MATRIX[lst_get_by_name(rooms, operand[1])->id][lst_get_by_name(rooms, operand[0])->id] = 1;
+				CAP_MATRIX[lst_get_by_name(rooms, operand[0])->id]
+				[lst_get_by_name(rooms, operand[1])->id] = 1;
+				CAP_MATRIX[lst_get_by_name(rooms, operand[1])->id]
+				[lst_get_by_name(rooms, operand[0])->id] = 1;
 			}
 			else
 				lemin_error();
@@ -90,13 +92,13 @@ t_lemin *to_read_link(t_lst_point *rooms, char *line, int is_ref, t_lemin *lem)
 		lemin_error();
 		ft_strsplitfree(&operand);
 	}
-	return lem;
+	return (lem);
 }
 
-t_lst_ants *create_ants(t_lemin *lem)
+t_lst_ants	*create_ants(t_lemin *lem)
 {
-	int i;
-	t_lst_ants *ants;
+	int			i;
+	t_lst_ants	*ants;
 
 	i = -1;
 	ants = lst_ants_create();
@@ -109,11 +111,11 @@ t_lst_ants *create_ants(t_lemin *lem)
 	return (lst_ants_get_start(ants));
 }
 
-t_lst_point *lemin_read(t_lst_point *rooms, t_lemin *lem)
+t_lst_point	*lemin_read(t_lst_point *rooms, t_lemin *lem)
 {
-	char *line;
-	int ex;
-	int is_ref;
+	char	*line;
+	int		ex;
+	int		is_ref;
 
 	is_ref = -1;
 	ex = -1;
@@ -128,9 +130,7 @@ t_lst_point *lemin_read(t_lst_point *rooms, t_lemin *lem)
 		else if (ANTS_NUM == -1)
 			lemin_error();
 		else if (is_ref == 0)
-		{
 			rooms = to_read_room(rooms, &is_ref, &ex, line);
-		}
 		if (is_ref >= 1)
 		{
 			rooms = lst_update_id(lst_get_start(rooms));

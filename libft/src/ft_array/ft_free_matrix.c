@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:15:36 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/20 20:51:34 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 14:57:24 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_free_matrix_int(int ***matrix, int count_row)
 	free(*matrix);
 	*matrix = NULL;
 }
-
 
 void	ft_delete_table(int ***table, int rows)
 {

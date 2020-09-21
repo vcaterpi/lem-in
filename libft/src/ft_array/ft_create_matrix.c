@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/19 17:06:56 by air_must          #+#    #+#             */
-/*   Updated: 2020/09/19 19:45:26 by air_must         ###   ########.fr       */
+/*   Created: 2020/09/21 14:58:25 by slynell           #+#    #+#             */
+/*   Updated: 2020/09/21 14:58:27 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int **ft_create_matrix_int(int size)
+int		**ft_create_matrix_int(int size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	**matrix;
 
 	matrix = (int **)malloc(sizeof(int *) * (size + 1));

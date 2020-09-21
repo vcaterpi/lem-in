@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 19:03:58 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/19 19:44:50 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/21 14:56:38 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,6 @@ int					**ft_create_matrix_int(int count);
 void				ft_print_matrix_int(int **matrix, int count);
 void				ft_delete_table(int ***table, int rows);
 int					**ft_do_table(int rows, int cols);
-
-
 
 /*
 ** List function
