@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/21 15:15:31 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:14:14 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int main(void)
 {
 	t_lemin *lem;
 
-	lem = lemin_create();
-	lemin_read(ROOMS, lem);
+	lem = lemin_create();    //<-done
+	lemin_read(ROOMS, lem); //<-
 	apply_algo(lem);
 	get_path(lem);
 	distribution_ants(lem);

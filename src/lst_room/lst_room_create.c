@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lst_room_create.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 14:53:39 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:10:44 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-t_lst_point		*lst_create(void)
+t_lst_rooms		*lst_room_create(void)
 {
-	t_lst_point	*lst;
+	t_lst_rooms	*lst;
 
-	if (!(lst = (t_lst_point *)malloc(sizeof(t_lst_point))))
+	if (!(lst = (t_lst_rooms *)malloc(sizeof(t_lst_rooms))))
 		lemin_error();
 	lst->name = NULL;
 	lst->next = NULL;

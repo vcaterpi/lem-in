@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 14:56:09 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:10:44 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PATH			lem->path
 # define DATA			*(int*)data
 
-typedef struct			s_lst_point {
+typedef struct			s_lst_rooms {
 	struct s_lst_point	*prev;
 	struct s_lst_point	*next;
 	char				*name;
@@ -34,7 +34,7 @@ typedef struct			s_lst_point {
 	int					x;
 	int					y;
 	int					ex;
-}						t_lst_point;
+}						t_lst_rooms;
 
 typedef struct			s_lst_ants {
 	struct s_lst_ants	*prev;
@@ -55,30 +55,30 @@ typedef struct			s_lst_path {
 }						t_lst_path;
 
 typedef struct			s_lemin {
-	int					ants_num;
 	t_lst_ants			*ants;
-	int					rooms_num;
-	t_lst_point			*rooms;
+	t_lst_rooms			*rooms;
+	t_lst_path			*path;
 	int					**capacity_matrix;
 	int					**flow_matrix;
+	int					ants_num;
+	int					rooms_num;
 	int					*parent;
-	t_lst_path			*path;
 	int					error;
 }						t_lemin;
 
 /*
 ** ========================= FUNCTION LIST POINT ==============================
 */
-t_lst_point				*lst_create();
-t_lst_point				*lst_add(t_lst_point *lst);
-int						lst_length(t_lst_point *lst);
-t_lst_point				*lst_get_start(t_lst_point *lst);
-void					lst_free(t_lst_point *lst);
-int						lst_check(t_lst_point *lst);
-t_lst_point				*lst_get_by_name(t_lst_point *lst, char *name);
-t_lst_point				*lst_get_by_id(t_lst_point *lst, int point_id);
-void					lst_print_lst(t_lst_point *lst, int depth);
-t_lst_point				*lst_update_id(t_lst_point *tf);
+t_lst_rooms				*lst_room_create();
+t_lst_rooms				*lst_add(t_lst_rooms *lst);
+int						lst_length(t_lst_rooms *lst);
+t_lst_rooms				*lst_get_start(t_lst_rooms *lst);
+void					lst_free(t_lst_rooms *lst);
+int						lst_check(t_lst_rooms *lst);
+t_lst_rooms				*lst_get_by_name(t_lst_rooms *lst, char *name);
+t_lst_rooms				*lst_get_by_id(t_lst_rooms *lst, int point_id);
+void					lst_print_lst(t_lst_rooms *lst, int depth);
+t_lst_rooms				*lst_update_id(t_lst_rooms *tf);
 
 /*
 ** ========================== FUNCTION LIST PATH ==============================
@@ -108,7 +108,7 @@ void					lst_path_print_lst(t_lst_path *lst, int depth);
 
 t_lemin					*lemin_create();
 void					lemin_error();
-t_lst_point				*lemin_read(t_lst_point *tf, t_lemin *lem);
+t_lst_rooms				*lemin_read(t_lst_rooms *tf, t_lemin *lem);
 void					lemin_free(t_lemin *lem);
 void					get_path(t_lemin *lem);
 void					distribution_ants(t_lemin *lem);

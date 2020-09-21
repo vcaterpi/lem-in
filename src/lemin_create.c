@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 15:00:18 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:10:44 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_lemin		*lemin_create(void)
 	ANTS_NUM = -1;
 	ANTS = NULL;
 	ROOMS_NUM = -1;
-	ROOMS = lst_create();
+	ROOMS = lst_room_create();
 	PATH = NULL;
 	return (lem);
 }

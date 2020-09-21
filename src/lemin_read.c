@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:08:42 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/21 15:13:58 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 19:29:25 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-t_lst_point	*reconstr(t_lst_point *rooms, char *line, int ex)
+t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 {
 	char		**operand;
-	t_lst_point	*temp;
+	t_lst_rooms	*temp;
 
 	temp = rooms;
 	rooms->x = 0;
 	operand = ft_strsplit(line, ' ');
-	if (operand[0] && operand[1] && operand[2] && !operand[3])
+	if (operand[0] && operand[1] && operand[2] && !operand[3] &&
+		ft_is_number(operand[1]) && ft_is_number(operand[2]))
 	{
 		temp->name = ft_strdup(operand[0]);
 		temp->x = ft_atoi(operand[1]);
 		temp->y = ft_atoi(operand[2]);
 		temp->id = lst_length(temp) - 1;
 		temp->ex = ex;
-		if (!lst_check(temp))
+		if (!lst_check(temp) || ft_checkoverflow(temp->x, operand[1])
+			|| ft_checkoverflow(temp->y, operand[2]))
 			lemin_error();
 		ft_strsplitfree(&operand);
 		return (temp);
@@ -40,18 +42,18 @@ t_lst_point	*reconstr(t_lst_point *rooms, char *line, int ex)
 	return (temp);
 }
 
-t_lst_point	*to_read_room(t_lst_point *rooms, int *is_ref, int *ex, char *line)
+t_lst_rooms	*to_read_room(t_lst_rooms *rooms, int *is_ref, int *ex, char *line)
 {
-	if ((ft_strequ(line, "##start") || ft_strequ(line, "##end")) && *ex != -1)
-		lemin_error();
+	if (line[0] == '#' && line[1] == '#' && *ex != -1 || line[0] == 'L')
+		lemin_error(); //если текущая строка - любая команда, а предыдущая start или end, или начинается на L
 	else if (ft_strequ(line, "##start") && *ex == -1)
-		*ex = 0;
+		*ex = 0; //если текущая строка - команда start, а предыдущая - не команда 
 	else if (ft_strequ(line, "##end") && *ex == -1)
-		*ex = 1;
-	else if (line[0] != '#' && line[0] != 'L')
+		*ex = 1; //если текущая строка - команда end, а предыдущая - не команда
+	else if (line[0] != '#') //если строка начинается не на # или L
 	{
-		rooms = (rooms) ? lst_add(rooms) : lst_create();
-		rooms = reconstr(rooms, line, *ex);
+		rooms = (rooms) ? lst_add(rooms) : lst_room_create(); //если комнаты уже есть, то добавялем, если нет, то создаем
+		rooms = reconstr(rooms, line, *ex); //вносим данные о комнате
 		if (rooms == NULL)
 			lemin_error();
 		if (rooms->id == -1)
@@ -61,7 +63,7 @@ t_lst_point	*to_read_room(t_lst_point *rooms, int *is_ref, int *ex, char *line)
 	return (rooms);
 }
 
-t_lemin		*to_read_link(t_lst_point *rooms, char *line, int is_ref,\
+t_lemin		*to_read_link(t_lst_rooms *rooms, char *line, int is_ref,\
 			t_lemin *lem)
 {
 	char	**operand;
@@ -111,7 +113,14 @@ t_lst_ants	*create_ants(t_lemin *lem)
 	return (lst_ants_get_start(ants));
 }
 
-t_lst_point	*lemin_read(t_lst_point *rooms, t_lemin *lem)
+/*
+** Читаем строку. Если is_ref == -1, то это должно быть количество муравьев,
+** если is_ref == 0, то это должны быть координаты комнаты или комментарий.
+** если is_ref >= 1, то это должны быть связи.
+** 
+*/
+
+t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 {
 	char	*line;
 	int		ex;

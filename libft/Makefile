@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
+#    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/14 11:23:23 by slynell           #+#    #+#              #
-#    Updated: 2020/09/19 19:36:40 by air_must         ###   ########.fr        #
+#    Updated: 2020/09/21 19:17:44 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ SRC_OTHER += ft_ultoa_base.c
 SRC_OTHER += ft_ultoa_hex.c
 SRC_OTHER += ft_wstrlen.c
 SRC_OTHER += ft_countwords.c
+SRC_OTHER += ft_checkoverflow.c
+SRC_OTHER += ft_is_number.c
 SOURCES_OTHER = $(addprefix $(SDIR_OTHER)/,$(SRC_OTHER))
 OBJECTS_OTHER = $(addprefix $(ODIR_OTHER)/,$(SRC_OTHER:.c=.o))
 

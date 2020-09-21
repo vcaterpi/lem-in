@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lst_room_length.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 14:53:16 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:07:11 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-int			lst_length(t_lst_point *lst)
+int			lst_length(t_lst_rooms *lst)
 {
-	t_lst_point	*temp_lst;
+	t_lst_rooms	*temp_lst;
 	int			c;
 
 	c = 0;

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lst_room_update_id.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 15:12:20 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:07:11 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-t_lst_point		*lst_update_id(t_lst_point *tf)
+t_lst_rooms		*lst_update_id(t_lst_rooms *tf)
 {
-	t_lst_point	*temp_lst;
+	t_lst_rooms	*temp_lst;
 	int			c;
 	int			flag;
 
