@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/21 15:01:50 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/22 23:29:12 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	get_path(t_lemin *lem)
 			path->rooms = (int *)(malloc(sizeof(int) * path->length));
 			path->rooms[0] = 0;
 			path->path_id = s++;
+			PATH_NUM++;
 			get_path_room(lem, j, 1, path);
 		}
 	PATH = lst_path_get_start(path);

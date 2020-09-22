@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/22 22:26:44 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/23 00:49:51 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 # define CAP_MATRIX		lem->capacity_matrix
 # define PARENT			lem->parent
 # define PATH			lem->path
+# define PATH_NUM		lem->path_num
 # define DATA			*(int*)data
+# define ROOM_LAST		lem->rooms_num - 1
+# define PATH_LAST		lem->path_num - 1
 
 typedef struct			s_lst_rooms {
 	struct s_lst_point	*prev;
@@ -63,6 +66,7 @@ typedef struct			s_lemin {
 	int					**flow_matrix;
 	int					ants_num;
 	int					rooms_num;
+	int					path_num;
 	int					*parent;
 	int					error;
 }						t_lemin;
@@ -89,7 +93,7 @@ t_lst_ants				*lst_ants_add(t_lst_ants *lst);
 int						lst_ants_length(t_lst_ants *lst);
 t_lst_ants				*lst_ants_get_start(t_lst_ants *lst);
 void					lst_ants_free(t_lst_ants *lst);
-t_lst_ants				*lst_ants_get_by_id(t_lst_ants *lst, int path_id);
+t_lst_ants				*lst_ants_get_by_id(t_lst_ants *lst, int ant_id);
 void					lst_ants_print_lst(t_lst_ants *lst, int depth);
 
 /*
@@ -100,7 +104,7 @@ t_lst_path				*lst_path_add(t_lst_path *lst);
 int						lst_path_length(t_lst_path *lst);
 t_lst_path				*lst_path_get_start(t_lst_path *lst);
 void					lst_path_free(t_lst_path *lst);
-t_lst_path				*lst_path_get_by_id(t_lst_path *lst, int ant_id);
+t_lst_path				*lst_path_get_by_id(t_lst_path *lst, int path_id);
 void					lst_path_print_lst(t_lst_path *lst, int depth);
 
 /*

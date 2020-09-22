@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
+#    By: antondob <antondob@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/09/21 00:12:57 by air_must         ###   ########.fr        #
+#    Updated: 2020/09/23 02:31:58 by antondob         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 
 CC = gcc
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:00:38 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/22 22:41:47 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/23 00:18:23 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			path_ants_create(t_lemin *lem, t_lst_path *path)
 {
 	int i;
 
-	if (!(path->ants = (int*)malloc(sizeof(ANTS_NUM))))
+	if (!(path->ants = (int*)malloc(sizeof(int) * ANTS_NUM)))
 		lemin_error();
 	i = -1;
 	while(++i < ANTS_NUM)

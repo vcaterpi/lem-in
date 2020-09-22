@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:08:42 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/22 17:40:05 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/23 02:29:40 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 		return (temp);
 	}
 	ft_strsplitfree(&operand); 
-	operand = ft_strsplit(line, '-'); // what the fuck??????????
+	operand = ft_strsplit(line, '-');
 	if (!(operand[0] && operand[1] && !operand[2]))
 		temp = NULL;
 	ft_strsplitfree(&operand);
@@ -45,15 +45,15 @@ t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 t_lst_rooms	*to_read_room(t_lst_rooms *rooms, int *is_ref, int *ex, char *line)
 {
 	if (line[0] == '#' && line[1] == '#' && *ex != -1)
-		lemin_error(); //если текущая строка - любая команда, а предыдущая start или end, или начинается на L
+		lemin_error();
 	else if (ft_strequ(line, "##start") && *ex == -1)
-		*ex = 0; //если текущая строка - команда start, а предыдущая - не команда 
+		*ex = 0;
 	else if (ft_strequ(line, "##end") && *ex == -1)
-		*ex = 1; //если текущая строка - команда end, а предыдущая - не команда
-	else if (line[0] != '#') //если строка начинается не на #
+		*ex = 1;
+	else if (line[0] != '#')
 	{
-		rooms = (rooms) ? lst_room_add(rooms) : lst_room_create(); //если комнаты уже есть, то добавялем, если нет, то создаем
-		rooms = reconstr(rooms, line, *ex); //вносим данные о комнате
+		rooms = (rooms) ? lst_room_add(rooms) : lst_room_create(); 
+		rooms = reconstr(rooms, line, *ex); 
 		if (rooms == NULL)
 			lemin_error();
 		if (rooms->id == -1)
@@ -112,13 +112,6 @@ t_lst_ants	*create_ants(t_lemin *lem)
 	}
 	return (lst_ants_get_start(ants));
 }
-
-/*
-** Читаем строку. Если is_ref == -1, то это должно быть количество муравьев,
-** если is_ref == 0, то это должны быть координаты комнаты или комментарий.
-** если is_ref >= 1, то это должны быть связи.
-** 
-*/
 
 t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 {
