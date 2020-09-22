@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/23 02:28:22 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/23 02:36:45 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void togo_ants(t_lemin *lem)
 	t_lst_path *p;
 
 	flag = 0;
-	p = lst_path_get_start(PATH);
+	p = PATH;
 	while (p)
 	{
 		i = -1;
@@ -41,7 +41,7 @@ void togo_ants(t_lemin *lem)
 			ft_printf("\n");
 			if (!flag--)
 				break ;
-			p = lst_path_get_start(PATH);
+			p = PATH;
 		}
 	}
 }
