@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:00:38 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/21 15:00:39 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/22 22:41:47 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+void			path_ants_create(t_lemin *lem, t_lst_path *path)
+{
+	int i;
+
+	if (!(path->ants = (int*)malloc(sizeof(ANTS_NUM))))
+		lemin_error();
+	i = -1;
+	while(++i < ANTS_NUM)
+		path->ants[i] = -1;
+}
 
 void			distribution_ants(t_lemin *lem)
 {
@@ -35,7 +46,11 @@ void			distribution_ants(t_lemin *lem)
 			path = path->next;
 		}
 		lst_ants_get_by_id(ANTS, i)->path_id = id;
-		lst_path_get_by_id(PATH, id)->counter++;
+		path = lst_path_get_by_id(PATH, id);
+		path->counter++;
+		if (!path->ants)
+			path_ants_create(lem, path);
+		path->ants[path->counter - path->length - 1] = i; 
 	}
 	return ;
 }

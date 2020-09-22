@@ -6,13 +6,13 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 16:07:11 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/22 16:57:59 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-t_lst_rooms		*lst_update_id(t_lst_rooms *tf)
+t_lst_rooms		*lst_room_update_id(t_lst_rooms *tf)
 {
 	t_lst_rooms	*temp_lst;
 	int			c;
@@ -21,7 +21,7 @@ t_lst_rooms		*lst_update_id(t_lst_rooms *tf)
 	c = 1;
 	flag = 0;
 	temp_lst = tf;
-	while (temp_lst && temp_lst->next)
+	while (temp_lst)
 	{
 		if (temp_lst->ex == 0)
 		{
@@ -30,7 +30,7 @@ t_lst_rooms		*lst_update_id(t_lst_rooms *tf)
 		}
 		else if (temp_lst->ex == 1)
 		{
-			temp_lst->id = lst_length(tf) - 2;
+			temp_lst->id = lst_room_length(tf) - 1;
 			flag++;
 		}
 		else if (temp_lst->id != -1)

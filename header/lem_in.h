@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 16:10:44 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/22 22:26:44 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct			s_lst_path {
 	int					path_id;
 	int					length;
 	int					counter;
+	int					*ants;
 	int					*rooms;
 }						t_lst_path;
 
@@ -70,15 +71,15 @@ typedef struct			s_lemin {
 ** ========================= FUNCTION LIST POINT ==============================
 */
 t_lst_rooms				*lst_room_create();
-t_lst_rooms				*lst_add(t_lst_rooms *lst);
-int						lst_length(t_lst_rooms *lst);
-t_lst_rooms				*lst_get_start(t_lst_rooms *lst);
-void					lst_free(t_lst_rooms *lst);
-int						lst_check(t_lst_rooms *lst);
-t_lst_rooms				*lst_get_by_name(t_lst_rooms *lst, char *name);
-t_lst_rooms				*lst_get_by_id(t_lst_rooms *lst, int point_id);
-void					lst_print_lst(t_lst_rooms *lst, int depth);
-t_lst_rooms				*lst_update_id(t_lst_rooms *tf);
+t_lst_rooms				*lst_room_add(t_lst_rooms *lst);
+int						lst_room_length(t_lst_rooms *lst);
+t_lst_rooms				*lst_room_get_start(t_lst_rooms *lst);
+void					lst_room_free(t_lst_rooms *lst);
+int						lst_room_check(t_lst_rooms *lst);
+t_lst_rooms				*lst_room_get_by_name(t_lst_rooms *lst, char *name);
+t_lst_rooms				*lst_room_get_by_id(t_lst_rooms *lst, int point_id);
+void					lst_room_print_lst(t_lst_rooms *lst, int depth);
+t_lst_rooms				*lst_room_update_id(t_lst_rooms *tf);
 
 /*
 ** ========================== FUNCTION LIST PATH ==============================

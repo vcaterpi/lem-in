@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/21 00:44:49 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/22 17:49:38 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void print_paths(t_lemin *lem, int curr)
 		if (FLOW_MATRIX[curr][j] == 1)
 		{
 			if (curr == 0)
-				ft_printf("%d -> %d", curr, j);
+				ft_printf("%s -> %s", lst_room_get_by_id(lem->rooms, curr)->name, lst_room_get_by_id(lem->rooms, j)->name);
 			else
-				ft_printf(" -> %d", j);
+				ft_printf(" -> %s", lst_room_get_by_id(lem->rooms, j)->name);
 			print_paths(lem, j);
 		}
 	}

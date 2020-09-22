@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_ants_length.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 14:55:08 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/22 16:32:51 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int			lst_ants_length(t_lst_ants *lst)
 
 	c = 0;
 	temp_lst = lst_ants_get_start(lst);
-	while (temp_lst && temp_lst->next)
-	{
-		c++;
+	if (temp_lst && !temp_lst->next)
+		return (1);
+	while (temp_lst && ++c)
 		temp_lst = temp_lst->next;
-	}
 	return (c);
 }

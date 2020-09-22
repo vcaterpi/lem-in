@@ -6,13 +6,13 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 11:02:27 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 16:07:11 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/22 16:10:00 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/lem_in.h"
 
-void	lst_print_lst(t_lst_rooms *lst, int depth)
+void	lst_room_print_lst(t_lst_rooms *lst, int depth)
 {
 	t_lst_rooms	*temp;
 	int			i;

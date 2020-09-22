@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 14:58:25 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/21 14:58:27 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/22 17:19:48 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int		**ft_create_matrix_int(int size)
 	int	j;
 	int	**matrix;
 
-	matrix = (int **)malloc(sizeof(int *) * (size + 1));
+	matrix = (int **)malloc(sizeof(int *) * size);
 	i = -1;
 	while (++i < size)
-		matrix[i] = (int *)malloc(sizeof(int) * (size + 1));
+		matrix[i] = (int *)malloc(sizeof(int) * size);
 	matrix[i] = 0;
 	i = -1;
 	while (++i < size)

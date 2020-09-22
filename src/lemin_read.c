@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:08:42 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/21 19:29:25 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/09/22 17:40:05 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 		temp->name = ft_strdup(operand[0]);
 		temp->x = ft_atoi(operand[1]);
 		temp->y = ft_atoi(operand[2]);
-		temp->id = lst_length(temp) - 1;
+		temp->id = lst_room_length(temp) - 1;
 		temp->ex = ex;
-		if (!lst_check(temp) || ft_checkoverflow(temp->x, operand[1])
+		if (!lst_room_check(temp) || ft_checkoverflow(temp->x, operand[1])
 			|| ft_checkoverflow(temp->y, operand[2]))
 			lemin_error();
 		ft_strsplitfree(&operand);
 		return (temp);
 	}
-	ft_strsplitfree(&operand);
-	operand = ft_strsplit(line, '-');
+	ft_strsplitfree(&operand); 
+	operand = ft_strsplit(line, '-'); // what the fuck??????????
 	if (!(operand[0] && operand[1] && !operand[2]))
 		temp = NULL;
 	ft_strsplitfree(&operand);
@@ -44,15 +44,15 @@ t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 
 t_lst_rooms	*to_read_room(t_lst_rooms *rooms, int *is_ref, int *ex, char *line)
 {
-	if (line[0] == '#' && line[1] == '#' && *ex != -1 || line[0] == 'L')
+	if (line[0] == '#' && line[1] == '#' && *ex != -1)
 		lemin_error(); //если текущая строка - любая команда, а предыдущая start или end, или начинается на L
 	else if (ft_strequ(line, "##start") && *ex == -1)
 		*ex = 0; //если текущая строка - команда start, а предыдущая - не команда 
 	else if (ft_strequ(line, "##end") && *ex == -1)
 		*ex = 1; //если текущая строка - команда end, а предыдущая - не команда
-	else if (line[0] != '#') //если строка начинается не на # или L
+	else if (line[0] != '#') //если строка начинается не на #
 	{
-		rooms = (rooms) ? lst_add(rooms) : lst_room_create(); //если комнаты уже есть, то добавялем, если нет, то создаем
+		rooms = (rooms) ? lst_room_add(rooms) : lst_room_create(); //если комнаты уже есть, то добавялем, если нет, то создаем
 		rooms = reconstr(rooms, line, *ex); //вносим данные о комнате
 		if (rooms == NULL)
 			lemin_error();
@@ -66,25 +66,25 @@ t_lst_rooms	*to_read_room(t_lst_rooms *rooms, int *is_ref, int *ex, char *line)
 t_lemin		*to_read_link(t_lst_rooms *rooms, char *line, int is_ref,\
 			t_lemin *lem)
 {
-	char	**operand;
+	char			**operand;
+	t_lst_rooms 	*r_1;
+	t_lst_rooms		*r_2;
 
 	if (is_ref == 1)
 	{
-		ROOMS_NUM = lst_length(rooms) - 1;
+		ROOMS_NUM = lst_room_length(rooms);
 		CAP_MATRIX = ft_create_matrix_int(ROOMS_NUM);
 	}
-	if (line[0] != '#' && line[0] != 'L')
+	if (line[0] != '#')
 	{
 		operand = ft_strsplit(line, '-');
 		if (operand[0] && operand[1] && !operand[2])
 		{
-			if (lst_get_by_name(rooms, operand[0]) != NULL &&\
-				lst_get_by_name(rooms, operand[1]) != NULL)
+			if ((r_1 = lst_room_get_by_name(rooms, operand[0])) != NULL &&\
+				(r_2 = lst_room_get_by_name(rooms, operand[1])) != NULL)
 			{
-				CAP_MATRIX[lst_get_by_name(rooms, operand[0])->id]
-				[lst_get_by_name(rooms, operand[1])->id] = 1;
-				CAP_MATRIX[lst_get_by_name(rooms, operand[1])->id]
-				[lst_get_by_name(rooms, operand[0])->id] = 1;
+				CAP_MATRIX[r_1->id][r_2->id] = 1;
+				CAP_MATRIX[r_2->id][r_1->id] = 1;
 			}
 			else
 				lemin_error();
@@ -136,13 +136,13 @@ t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 			ANTS_NUM = ft_atoi(line);
 			ANTS = create_ants(lem);
 		}
-		else if (ANTS_NUM == -1)
+		else if (ANTS_NUM == -1 || line[0] == 'L')
 			lemin_error();
 		else if (is_ref == 0)
 			rooms = to_read_room(rooms, &is_ref, &ex, line);
 		if (is_ref >= 1)
 		{
-			rooms = lst_update_id(lst_get_start(rooms));
+			rooms = lst_room_update_id(lst_room_get_start(rooms));
 			lem = to_read_link(rooms, line, is_ref, lem);
 			is_ref++;
 		}
