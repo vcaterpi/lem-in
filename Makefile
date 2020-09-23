@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antondob <antondob@student.42.fr>          +#+  +:+       +#+         #
+#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/09/23 02:31:58 by antondob         ###   ########.fr        #
+#    Updated: 2020/09/23 20:55:29 by air_must         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ SRC_LST_ROOM += lst_room_get_by_id.c
 SRC_LST_ROOM += lst_room_check.c
 SRC_LST_ROOM += lst_room_print_lst.c
 SRC_LST_ROOM += lst_room_update_id.c
+SRC_LST_ROOM += lst_room_array.c
+
 
 SOURCES_LST_ROOM = $(addprefix $(SDIR_LST_ROOM)/,$(SRC_LST_ROOM))
 OBJECTS_LST_ROOM = $(addprefix $(ODIR_LST_ROOM)/,$(SRC_LST_ROOM:.c=.o))
@@ -86,6 +88,7 @@ SRC_LST_ANTS += lst_ants_get_start.c
 SRC_LST_ANTS += lst_ants_length.c
 SRC_LST_ANTS += lst_ants_get_by_id.c
 SRC_LST_ANTS += lst_ants_print_lst.c
+SRC_LST_ANTS += lst_ants_array.c
 
 SOURCES_LST_ANTS = $(addprefix $(SDIR_LST_ANTS)/,$(SRC_LST_ANTS))
 OBJECTS_LST_ANTS = $(addprefix $(ODIR_LST_ANTS)/,$(SRC_LST_ANTS:.c=.o))
@@ -103,6 +106,8 @@ SRC_LST_PATH += lst_path_get_start.c
 SRC_LST_PATH += lst_path_length.c
 SRC_LST_PATH += lst_path_get_by_id.c
 SRC_LST_PATH += lst_path_print_lst.c
+SRC_LST_PATH += lst_path_array.c
+
 
 SOURCES_LST_PATH = $(addprefix $(SDIR_LST_PATH)/,$(SRC_LST_PATH))
 OBJECTS_LST_PATH = $(addprefix $(ODIR_LST_PATH)/,$(SRC_LST_PATH:.c=.o))

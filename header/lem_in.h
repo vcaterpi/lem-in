@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/23 00:49:51 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/23 21:00:00 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define DATA			*(int*)data
 # define ROOM_LAST		lem->rooms_num - 1
 # define PATH_LAST		lem->path_num - 1
+# define ARR_ROOM		lem->arr_room
+# define ARR_ANTS		lem->arr_ants
+# define ARR_PATH		lem->arr_path
 
 typedef struct			s_lst_rooms {
 	struct s_lst_point	*prev;
@@ -62,6 +65,9 @@ typedef struct			s_lemin {
 	t_lst_ants			*ants;
 	t_lst_rooms			*rooms;
 	t_lst_path			*path;
+	t_lst_ants			**arr_ants;
+	t_lst_path			**arr_path;
+	t_lst_rooms			**arr_room;
 	int					**capacity_matrix;
 	int					**flow_matrix;
 	int					ants_num;
@@ -84,6 +90,7 @@ t_lst_rooms				*lst_room_get_by_name(t_lst_rooms *lst, char *name);
 t_lst_rooms				*lst_room_get_by_id(t_lst_rooms *lst, int point_id);
 void					lst_room_print_lst(t_lst_rooms *lst, int depth);
 t_lst_rooms				*lst_room_update_id(t_lst_rooms *tf);
+t_lst_rooms				**lst_room_array(t_lst_rooms *lst, int size);
 
 /*
 ** ========================== FUNCTION LIST PATH ==============================
@@ -95,6 +102,7 @@ t_lst_ants				*lst_ants_get_start(t_lst_ants *lst);
 void					lst_ants_free(t_lst_ants *lst);
 t_lst_ants				*lst_ants_get_by_id(t_lst_ants *lst, int ant_id);
 void					lst_ants_print_lst(t_lst_ants *lst, int depth);
+t_lst_path				**lst_path_array(t_lst_path *lst, int size);
 
 /*
 ** ========================== FUNCTION LIST ANTS ==============================
@@ -106,6 +114,8 @@ t_lst_path				*lst_path_get_start(t_lst_path *lst);
 void					lst_path_free(t_lst_path *lst);
 t_lst_path				*lst_path_get_by_id(t_lst_path *lst, int path_id);
 void					lst_path_print_lst(t_lst_path *lst, int depth);
+t_lst_ants				**lst_ants_array(t_lst_ants *lst, int size);
+
 
 /*
 ** ========================== LEM_IN FUNCTION =================================

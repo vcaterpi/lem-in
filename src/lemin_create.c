@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/22 23:29:37 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/23 20:42:06 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ t_lemin		*lemin_create(void)
 	ANTS = NULL;
 	ROOMS_NUM = -1;
 	PATH_NUM = 0;
+	lem->arr_ants = NULL;
+	lem->arr_path = NULL;
+	lem->arr_room = NULL;
 	ROOMS = lst_room_create();
 	PATH = NULL;
 	return (lem);

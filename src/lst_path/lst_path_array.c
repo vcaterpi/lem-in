@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin_free.c                                       :+:      :+:    :+:   */
+/*   lst_path_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/23 20:42:37 by air_must         ###   ########.fr       */
+/*   Updated: 2020/09/23 21:02:48 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/lem_in.h"
+#include "../../header/lem_in.h"
 
-void	lemin_free(t_lemin *lem)
+t_lst_path		**lst_path_array(t_lst_path *lst, int size)
 {
-	ft_free_matrix_int(&CAP_MATRIX, ROOMS_NUM);
-	ft_free_matrix_int(&FLOW_MATRIX, ROOMS_NUM);
-	lst_room_free(ROOMS);
-	lst_path_free(PATH);
-	lst_ants_free(ANTS);
-	free(PARENT);
-	free(lem->arr_ants);
-	free(lem->arr_path);
-	free(lem->arr_room);
+	t_lst_path	*temp_lst;
+	t_lst_path	**array;
+	int			i;
 
-	free(lem);
-	lem = NULL;
+	i = 0;
+	temp_lst = lst_path_get_start(lst);
+	array = (t_lst_path**)malloc(sizeof(t_lst_path*) * size);
+	while (temp_lst)
+	{
+		if(temp_lst->path_id != -1)
+			array[temp_lst->path_id] = temp_lst;
+		temp_lst = temp_lst->next;
+	}
+	return (array);
 }
