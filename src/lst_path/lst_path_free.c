@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_path_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 14:49:03 by slynell          ###   ########.fr       */
+/*   Updated: 2020/09/23 18:38:39 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	lst_path_free(t_lst_path *lst)
 		{
 			temp_lst = lst->next;
 			free(lst->rooms);
+			free(lst->ants);
 			free(lst);
 			lst = temp_lst;
 		}

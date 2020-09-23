@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/23 02:36:45 by antondob         ###   ########.fr       */
+/*   Updated: 2020/09/23 18:38:46 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void togo_ants(t_lemin *lem)
 	while (p)
 	{
 		i = -1;
-		while (p->ants && p->ants[++i] != -1) 
+		while (p->ants && p->ants[++i] != -1)
 		{
 			if (((i == 0) || ((prev = lst_ants_get_by_id(ANTS, p->ants[i - 1]))->room_id != 0)
 				&& (prev->room_id != p->rooms[1])) &&
