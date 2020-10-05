@@ -3,27 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   algo_apply.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/02 20:12:38 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/09/23 02:29:51 by antondob         ###   ########.fr       */
+/*   Created: 2020/10/02 17:49:14 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/10/05 16:00:24 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
+//https://cp-algorithms.com/graph/min_cost_flow.html
 
-/*
-** Реализация алгоритма Эдмондса-Карпа
-*/
+// зануляем массив родителей и указывем, что все ребра основные
+void	parent_zero(t_lemin *lem)
+{
+	int i;
 
-/*
-** См Пункт 2.2.3 Алгоритма ниже
-** После нахождения пути из истока в сток -
-** обновляем матрицу остаточных пропусных способностей
-** и матрицу потоков
-*/
+	if (ERROR)
+		return ;
+	i = -1;
+	while (++i < ROOMS_NUM)
+		PARENT[i] = -1;
+	
+		
+}
+//запоняем матрицы весов - для прямых ребер 1, для обратных ребер -1
+void	fill_weight_matrix(t_lemin *lem)
+{
+	int i;
+	int j;
 
+	if (ERROR)
+		return ;
+	i = -1;
+	while (++i < ROOMS_NUM)
+	{
+		j = -1;
+		while (++j < ROOMS_NUM)
+		{
+			if (CAP_MATRIX[i][j] == 1)
+			{
+				WEIGHT_MATRIX[i][j] = 1;
+				WEIGHT_MATRIX[j][i] = -1;
+			}
+		}
+	}
+}
+//обновляем матрицы, которые необходимо обновить 
 static void		refresh_caps(t_lemin *lem)
 {
 	int curr;
@@ -44,108 +70,142 @@ static void		refresh_caps(t_lemin *lem)
 	}
 }
 
-/*
-** См пункт 2.2.2 Алгоритма ниже
-** Обходим соседей только что посещенной вершины
-*/
-
-static void		find_path(t_lemin *lem,
-					void *data, t_queue **q)
+//заполняем массив кратчайших растояний до вершин бесконечностями
+void	fill_distance(t_lemin *lem)
 {
 	int i;
 
-	if (ERROR)
-		return ;
 	i = -1;
-	while ((!ERROR) && (++i < ROOMS_NUM))
-	{
-		if ((CAP_MATRIX[DATA][i] == 1) &&
-			(PARENT[i] == -1) && (i != 0))
-		{
-			ft_qpush(q, &i, sizeof(int));
-			if (!q)
-				ERROR = 1;
-			PARENT[i] = DATA;
-			if (i == ROOMS_NUM - 1)
-			{
-				ft_qdel(q);
-				break ;
-			}
-		}
-	}
+	while (++i < ROOMS_NUM)
+		DISTANCE[i] = INF;
+	DISTANCE[0] = 0;
 }
-
-/*
-** Алгоритм Эдмондса-Карпа адаптированный под задачу для
-** неориентированного графа
-** 1. Cтавим 1 на последнюю комнату, чтобы мы могли войти в цикл
-** 2. До тех пор пока не перестанут
-** 	  находиться пути из первой комнаты в последнюю
-**    выполняем то, что в цикле
-**	  2.1 добавляем 1-ю комнату в очередь
-**	  2.2 выполяем команды в цикле,
-**		  пока в очереди есть хотя бы одна комната
-		  2.2.1 Убираем посещенную комнату из очереди
-		  2.2.2 Обходим всех соседей только что удаленной комнаты
-		  	    2.2.2.1 Если вершина ненулевая, у нее нет родителя и
-						у ребра есть положительная остаточная пропускная спопобность,
-						добавляем ее в очередь
-		  2.2.3 Если найден пусть из истока в сток, то меняем матрицы
-		  		остаточных пропускных способностей и потоков
-**	3. Очищаем локальные замаллоченные переменные
-**
-*/
-
-static void		edmonds_karp(t_lemin *lem)
+//находим самые короткие пути
+void	shortest_paths(t_lemin *lem)
 {
-	t_queue 	*q;
-	void 		*data;
+	t_queue	*q;
+	void	*data;
+	int 	*inq;
+	int 	i;
 
-	if (ERROR)
-		return ;
+	//ft_printf("func_call\n");
 	q = NULL;
+	if (!(inq = ft_memalloc(sizeof(int) * ROOMS_NUM)))
+		ERROR = 1;
+	i = -1;
+	while (++i < ROOMS_NUM)
+		inq[i] = 0;
 	if (!(data = ft_memalloc(sizeof(int))))
 		ERROR = 1;
-	PARENT[ROOMS_NUM - 1] = 1;
-	while ((!ERROR) && (PARENT[ROOMS_NUM - 1] >= 0))
+	fill_distance(lem);
+	//ft_printf("distance[room_num - 1] = %d\n", DISTANCE[ROOMS_NUM -1]);
+	parent_zero(lem);
+	ft_bzero(data, sizeof(int));
+	ft_qpush(&q, data, sizeof(int));
+	if (!q)
+		ERROR = 1;
+	while (q)
 	{
-		ft_bzero(data, sizeof(int));
-		ft_qpush(&q, data, sizeof(int));
-		if (!q)
-			ERROR = 1;
-		parent_zero(lem);
-		while (!(ERROR) && (q != NULL))
+		data = ft_qpop(&q, sizeof(int));
+		inq[DATA] = 0;
+		i = -1;
+		//дистанция по второй таблице вычисляется уже после первой
+		while (++i < ROOMS_NUM)
 		{
-			ft_memdel(&data);
-			data = ft_qpop(&q, sizeof(int));
-			find_path(lem, data, &q);
-			if (PARENT[ROOMS_NUM - 1] >= 0)
-				refresh_caps(lem);
+			if ((i != 0) && CAP_MATRIX[DATA][i] > 0 && (DISTANCE[i] > DISTANCE[DATA] + WEIGHT_MATRIX[DATA][i]))
+			{
+				DISTANCE[i] = DISTANCE[DATA] + WEIGHT_MATRIX[DATA][i]; //WEIGHT_MATRIX_2[DATA][i];
+				PARENT[i] = DATA;
+				if (!inq[i])
+				{
+					inq[i] = 1;
+					ft_qpush(&q, &i, sizeof(int));
+				}
+			}
 		}
+		free(data);
+		data = NULL;
 	}
-	ft_memdel(&data);
-	ft_qdel(&q);
+	
+}
+//;;;;;;;;;;;;;;;;;
+int count_steps(t_lemin *lem)
+{
+	int i;
+	int steps;
+	int max;
+	t_lst_path *path;
+
+	path = PATH;
+	i = 0;
+	max = 0;
+	steps = 0;
+	while (++i <= PATH_NUM)
+	{
+		steps = ANTS_NUM_PATH + PATH_LEN;
+		if (steps > max)
+			max = steps;
+		path = path->next;
+	}
+	return (steps - 1);
+}
+//;;;;;;;;;;;;;;;;;;
+//алгоритм нахождения максимального потока минимальной стоимости
+int	min_cost_algo(t_lemin *lem)
+{
+	int flow;
+
+	flow = 0;
+	//while (flow < INF)
+	//{   
+		//printf("flow = %d\n", flow);
+		shortest_paths(lem);
+		if (DISTANCE[ROOMS_NUM - 1] == INF)
+			return(flow);
+		refresh_caps(lem);
+		return(++flow);
+		//
+		
+		//
+	//}
+	//ft_printf("flow = %d\n", flow);
 }
 
-/*
-** 1. Удваиваем вершины графа,
-**    чтобы учесть пропусную сопобность не только ребер,
-**    но и вершин
-** 2. Применяем алгоритм
-** 3. Возвращаем граф к изначальному виду
-*/
-void		apply_algo(t_lemin *lem)
+t_lemin		*apply_algo(t_lemin *lem)
 {
+	int 	steps;
+	int 	new_rooms;
+	int 	**flow_matr_backup;
+	t_lemin *result;
+
 	if (ERROR)
-		return ;
+		return (NULL) ;
+	//удваиваем вершины
 	adapt_capmatrix(lem);
-	if (!(FLOW_MATRIX = ft_create_matrix_int(ROOMS_NUM)))
+	result = NULL;
+	//создаем доп матрицу пропускных способностей и матрицы потоков
+	if (!(FLOW_MATRIX = ft_create_matrix_int(ROOMS_NUM)) ||
+		!(WEIGHT_MATRIX = ft_create_matrix_int(ROOMS_NUM)) ||
+		!(PARENT = ft_memalloc(sizeof(int) * ROOMS_NUM)) ||
+		!(DISTANCE = ft_memalloc(sizeof(int) * ROOMS_NUM)))
 		ERROR = 1;
-
-	if (!(PARENT = ft_memalloc(sizeof(int) * ROOMS_NUM)))
-		ERROR = 1;
-
-	parent_zero(lem);
-	edmonds_karp(lem);
-	adapt_flowmatrix(lem);
+	//создаем матрицы весов
+	fill_weight_matrix(lem);
+	result = lemin_backup(result, lem, INF);
+	while (min_cost_algo(lem))
+	{
+		flow_matr_backup = ft_copy_matrix(FLOW_MATRIX, ROOMS_NUM);
+		adapt_flowmatrix(lem);
+		refresh_path(lem);
+		refresh_ants(lem);
+		//ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
+		
+		FLOW_MATRIX = flow_matr_backup;
+		if ((steps = count_steps(lem)) > result->steps_num)
+			break ;
+		result = lemin_backup(result, lem, steps);
+		ROOMS_NUM = (ROOMS_NUM - 2) * 2 + 2;
+	}
+	lemin_free(lem);
+	return (result);
 }

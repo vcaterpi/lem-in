@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:08:42 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/23 02:29:40 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/05 16:00:55 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,22 +97,6 @@ t_lemin		*to_read_link(t_lst_rooms *rooms, char *line, int is_ref,\
 	return (lem);
 }
 
-t_lst_ants	*create_ants(t_lemin *lem)
-{
-	int			i;
-	t_lst_ants	*ants;
-
-	i = -1;
-	ants = lst_ants_create();
-	ants->ant_id = 0;
-	while (++i < ANTS_NUM)
-	{
-		ants = lst_ants_add(ants);
-		ants->ant_id = i;
-	}
-	return (lst_ants_get_start(ants));
-}
-
 t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 {
 	char	*line;
@@ -127,7 +111,6 @@ t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 		{
 			is_ref += 1;
 			ANTS_NUM = ft_atoi(line);
-			ANTS = create_ants(lem);
 		}
 		else if (ANTS_NUM == -1 || line[0] == 'L')
 			lemin_error();

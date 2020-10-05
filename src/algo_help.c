@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_help.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 23:54:19 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/19 21:14:27 by air_must         ###   ########.fr       */
+/*   Updated: 2020/10/04 22:30:53 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** 0 использовать нельзя, тк 0 - координата нулевой вершины
 */
 
-void	parent_zero(t_lemin *lem)
+/*void	parent_zero(t_lemin *lem)
 {
 	int i;
 
@@ -31,7 +31,7 @@ void	parent_zero(t_lemin *lem)
 	i = -1;
 	while (++i <= (ROOMS_NUM - 1))
 		PARENT[i] = -1;
-}
+}*/
 
 /*
 ** Удваиваем все вершины матрицы пропусных способностей,
@@ -49,7 +49,7 @@ void	adapt_capmatrix(t_lemin *lem)
 	if (ERROR)
 		return ;
 	new_rooms = (ROOMS_NUM - 2) * 2 + 2;
-	if (!(new_matrix = ft_do_table(new_rooms, new_rooms)))
+	if (!(new_matrix = ft_create_matrix_int(new_rooms)))
 		ERROR = 1;
 	i = -1;
 	while ((!ERROR) && (++i < ROOMS_NUM))
@@ -84,7 +84,7 @@ void	adapt_flowmatrix(t_lemin *lem)
 	if (ERROR)
 		return ;
 	old_rooms = (ROOMS_NUM + 2) / 2;
-	if (!(old_matrix = ft_do_table(old_rooms, old_rooms)))
+	if (!(old_matrix = ft_create_matrix_int(old_rooms)))
 		ERROR = 1;
 	i = -1;
 	while ((!ERROR) && (++i < old_rooms))
@@ -96,7 +96,6 @@ void	adapt_flowmatrix(t_lemin *lem)
 				old_matrix[i][j] = 1;
 	}
 	ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
-	ft_delete_table(&CAP_MATRIX, ROOMS_NUM);
 	FLOW_MATRIX = old_matrix;
 	ROOMS_NUM = old_rooms;
 

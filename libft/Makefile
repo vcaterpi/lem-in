@@ -6,7 +6,7 @@
 #    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/14 11:23:23 by slynell           #+#    #+#              #
-#    Updated: 2020/09/21 19:17:44 by vcaterpi         ###   ########.fr        #
+#    Updated: 2020/10/05 13:24:45 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,6 +159,7 @@ SRC_ARRAY += ft_array_print.c
 SRC_ARRAY += ft_free_matrix.c
 SRC_ARRAY += ft_create_matrix.c
 SRC_ARRAY += ft_print_matrix.c
+SRC_ARRAY += ft_copy_matrix.c
 
 SOURCES_ARRAY = $(addprefix $(SDIR_ARRAY)/,$(SRC_ARRAY))
 OBJECTS_ARRAY = $(addprefix $(ODIR_ARRAY)/,$(SRC_ARRAY:.c=.o))

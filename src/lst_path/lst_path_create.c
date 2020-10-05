@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_path_create.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/22 22:30:41 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/04 22:42:31 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_lst_path	*lst_path_create(void)
 	lst->path_id = -1;
 	lst->rooms = NULL;
 	lst->ants = NULL;
+	lst->ants_num = 0;
 	lst->length = -1;
 	lst->counter = -1;
 	return (lst);

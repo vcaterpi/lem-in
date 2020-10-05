@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_ants_free.c                                    :+:      :+:    :+:   */
+/*   ft_copy_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/05 16:00:37 by vcaterpi         ###   ########.fr       */
+/*   Created: 2020/10/05 13:20:10 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/10/05 13:23:26 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/lem_in.h"
+#include "../header/libft.h"
 
-void	lst_ants_free(t_lst_ants *lst)
+int		**ft_copy_matrix(int **src, int size)
 {
-	t_lst_ants *temp_lst;
+	int **dst;
+	int i;
+	int j;
 
-	if (lst)
+	if (!(dst = ft_create_matrix_int(size)))
+		return (NULL);
+	i = -1;
+	while (++i < size)
 	{
-		if (lst->prev)
-			lst = lst_ants_get_start(lst);
-		while (lst)
-		{
-			temp_lst = lst->next;
-			free(lst);
-			lst = temp_lst;
-		}
-		lst = NULL;
+		j = -1;
+		while (++j < size)
+			dst[i][j] = src[i][j];
 	}
-	free(lst);
-	lst = NULL;
+	return (dst);
 }

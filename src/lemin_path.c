@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/09/22 23:29:12 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/05 13:16:33 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+void	refresh_path(t_lemin *lem)
+{
+	PATH_NUM = 0;
+	lst_path_free(PATH);
+	get_path(lem);
+}
 
 void	get_path_room(t_lemin *lem, int curr, int ind, t_lst_path *path)
 {

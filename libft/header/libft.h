@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 19:03:58 by slynell           #+#    #+#             */
-/*   Updated: 2020/09/21 19:03:15 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/05 13:24:05 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int					**ft_create_matrix_int(int count);
 void				ft_print_matrix_int(int **matrix, int count);
 void				ft_delete_table(int ***table, int rows);
 int					**ft_do_table(int rows, int cols);
+int					**ft_copy_matrix(int **src, int size);
 
 /*
 ** List function
