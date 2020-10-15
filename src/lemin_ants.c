@@ -6,13 +6,13 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:00:38 by slynell           #+#    #+#             */
-/*   Updated: 2020/10/05 13:18:49 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/15 17:41:53 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-void	refresh_ants(t_lemin *lem)
+void		refresh_ants(t_lemin *lem)
 {
 	lst_ants_free(ANTS);
 	ANTS = create_ants(lem);
@@ -35,18 +35,39 @@ t_lst_ants	*create_ants(t_lemin *lem)
 	return (lst_ants_get_start(ants));
 }
 
-void			path_ants_create(t_lemin *lem, t_lst_path *path)
+void		path_ants_create(t_lemin *lem, t_lst_path *path)
 {
 	int i;
 
 	if (!(path->ants = (int*)malloc(sizeof(int) * ANTS_NUM)))
 		lemin_error();
 	i = -1;
-	while(++i < ANTS_NUM)
+	while (++i < ANTS_NUM)
 		path->ants[i] = -1;
 }
 
-void			distribution_ants(t_lemin *lem)
+int			path_for_next_ant(t_lemin *lem)
+{
+	t_lst_path	*path;
+	int			mini;
+	int			id;
+
+	path = PATH;
+	mini = INT32_MAX;
+	id = 0;
+	while (path)
+	{
+		if (path->counter < mini)
+		{
+			mini = path->counter;
+			id = path->path_id;
+		}
+		path = path->next;
+	}
+	return (id);
+}
+
+void		distribution_ants(t_lemin *lem)
 {
 	int			i;
 	int			mini;
@@ -56,18 +77,7 @@ void			distribution_ants(t_lemin *lem)
 	i = -1;
 	while (++i < ANTS_NUM)
 	{
-		path = PATH;
-		mini = INT32_MAX;
-		id = 0;
-		while (path)
-		{
-			if (path->counter < mini)
-			{
-				mini = path->counter;
-				id = path->path_id;
-			}
-			path = path->next;
-		}
+		id = path_for_next_ant(lem);
 		lst_ants_get_by_id(ANTS, i)->path_id = id;
 		path = lst_path_get_by_id(PATH, id);
 		path->counter++;

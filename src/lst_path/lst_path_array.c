@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_path_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/23 21:02:48 by air_must         ###   ########.fr       */
+/*   Created: 2020/10/15 16:31:15 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/10/15 16:31:35 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_lst_path		**lst_path_array(t_lst_path *lst, int size)
 	array = (t_lst_path**)malloc(sizeof(t_lst_path*) * size);
 	while (temp_lst)
 	{
-		if(temp_lst->path_id != -1)
+		if (temp_lst->path_id != -1)
 			array[temp_lst->path_id] = temp_lst;
 		temp_lst = temp_lst->next;
 	}

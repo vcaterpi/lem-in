@@ -5,12 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/21 15:08:42 by slynell           #+#    #+#             */
-/*   Updated: 2020/10/05 16:00:55 by vcaterpi         ###   ########.fr       */
+/*   Created: 2020/10/15 17:37:55 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/10/15 19:30:27 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+static void	fill_capmatrix(char *op0, char *op1, t_lemin *lem,
+								t_lst_rooms *rooms)
+{
+	t_lst_rooms		*r_1;
+	t_lst_rooms		*r_2;
+
+	if ((r_1 = lst_room_get_by_name(rooms, op0)) != NULL &&\
+		(r_2 = lst_room_get_by_name(rooms, op1)) != NULL)
+	{
+		CAP_MATRIX[r_1->id][r_2->id] = 1;
+		CAP_MATRIX[r_2->id][r_1->id] = 1;
+	}
+	else
+		lemin_error();
+}
 
 t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 {
@@ -34,10 +50,9 @@ t_lst_rooms	*reconstr(t_lst_rooms *rooms, char *line, int ex)
 		ft_strsplitfree(&operand);
 		return (temp);
 	}
-	ft_strsplitfree(&operand); 
+	ft_strsplitfree(&operand);
 	operand = ft_strsplit(line, '-');
-	if (!(operand[0] && operand[1] && !operand[2]))
-		temp = NULL;
+	temp = (COND_6 ? NULL : temp);
 	ft_strsplitfree(&operand);
 	return (temp);
 }
@@ -52,8 +67,8 @@ t_lst_rooms	*to_read_room(t_lst_rooms *rooms, int *is_ref, int *ex, char *line)
 		*ex = 1;
 	else if (line[0] != '#')
 	{
-		rooms = (rooms) ? lst_room_add(rooms) : lst_room_create(); 
-		rooms = reconstr(rooms, line, *ex); 
+		rooms = (rooms) ? lst_room_add(rooms) : lst_room_create();
+		rooms = reconstr(rooms, line, *ex);
 		if (rooms == NULL)
 			lemin_error();
 		if (rooms->id == -1)
@@ -67,8 +82,6 @@ t_lemin		*to_read_link(t_lst_rooms *rooms, char *line, int is_ref,\
 			t_lemin *lem)
 {
 	char			**operand;
-	t_lst_rooms 	*r_1;
-	t_lst_rooms		*r_2;
 
 	if (is_ref == 1)
 	{
@@ -80,14 +93,7 @@ t_lemin		*to_read_link(t_lst_rooms *rooms, char *line, int is_ref,\
 		operand = ft_strsplit(line, '-');
 		if (operand[0] && operand[1] && !operand[2])
 		{
-			if ((r_1 = lst_room_get_by_name(rooms, operand[0])) != NULL &&\
-				(r_2 = lst_room_get_by_name(rooms, operand[1])) != NULL)
-			{
-				CAP_MATRIX[r_1->id][r_2->id] = 1;
-				CAP_MATRIX[r_2->id][r_1->id] = 1;
-			}
-			else
-				lemin_error();
+			fill_capmatrix(operand[0], operand[1], lem, rooms);
 			ft_strsplitfree(&operand);
 			return (lem);
 		}
@@ -119,8 +125,7 @@ t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 		if (is_ref >= 1)
 		{
 			rooms = lst_room_update_id(lst_room_get_start(rooms));
-			lem = to_read_link(rooms, line, is_ref, lem);
-			is_ref++;
+			lem = to_read_link(rooms, line, is_ref++, lem);
 		}
 		ft_strdel(&line);
 	}

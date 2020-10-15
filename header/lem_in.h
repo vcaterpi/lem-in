@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/05 15:01:32 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/15 19:29:23 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,34 @@
 
 # include "../libft/header/libft.h"
 
-# define INF                20000
-# define ANTS_NUM			lem->ants_num
-# define ANTS				lem->ants
-# define ROOMS_NUM			lem->rooms_num
-# define ROOMS				lem->rooms
-# define ERROR				lem->error
-# define FLOW_MATRIX		lem->flow_matrix
-# define CAP_MATRIX			lem->capacity_matrix
-# define WEIGHT_MATRIX	 	lem->weight_matrix
-# define PARENT				lem->parent
-# define DISTANCE			lem->distance
-# define PATH				lem->path
-# define PATH_NUM			lem->path_num
-# define DATA				*(int*)data
-# define ROOM_LAST			lem->rooms_num - 1
-# define PATH_LAST			lem->path_num - 1
-# define ARR_ROOM			lem->arr_room
-# define ARR_ANTS			lem->arr_ants
-# define ARR_PATH			lem->arr_path
-# define ANTS_NUM_PATH 		path->ants_num
-# define PATH_LEN			path->length
-# define STEPS              lem->steps_num
+# define INF            20000
+# define ANTS_NUM		lem->ants_num
+# define ANTS			lem->ants
+# define ROOMS_NUM		lem->rooms_num
+# define ROOMS			lem->rooms
+# define ERROR			lem->error
+# define FLOW_MATRIX	lem->flow_matrix
+# define CAP_MATRIX		lem->capacity_matrix
+# define WEIGHT_MATRIX	lem->weight_matrix
+# define PARENT			lem->parent
+# define DISTANCE		lem->distance
+# define PATH			lem->path
+# define PATH_NUM		lem->path_num
+# define DATA			*(int*)data
+# define ROOM_LAST		lem->rooms_num - 1
+# define PATH_LAST		lem->path_num - 1
+# define ARR_ROOM		lem->arr_room
+# define ARR_ANTS		lem->arr_ants
+# define ARR_PATH		lem->arr_path
+# define ANTS_NUM_PATH 	path->ants_num
+# define PATH_LEN		path->length
+# define STEPS          lem->steps_num
+# define COND_1			(prev = lem->arr_ants[p->ants[i - 1]])->room_id != 0
+# define COND_2			prev->room_id != p->rooms[1]
+# define COND_3			(a = lem->arr_ants[p->ants[i]])->room_id != ROOM_LAST
+# define COND_4			(a->room_id = p->rooms[++(a->index)]) != ROOM_LAST
+# define COND_5			(lem->arr_room[a->room_id])->name
+# define COND_6			!(operand[0] && operand[1] && !operand[2])
 
 typedef struct			s_lst_rooms {
 	struct s_lst_point	*prev;
@@ -113,7 +119,7 @@ void					lst_ants_free(t_lst_ants *lst);
 t_lst_ants				*lst_ants_get_by_id(t_lst_ants *lst, int ant_id);
 void					lst_ants_print_lst(t_lst_ants *lst, int depth);
 t_lst_path				**lst_path_array(t_lst_path *lst, int size);
-void					refresh_path(t_lemin *lem);	
+void					refresh_path(t_lemin *lem);
 
 /*
 ** ========================== FUNCTION LIST ANTS ==============================
@@ -128,7 +134,6 @@ void					lst_path_print_lst(t_lst_path *lst, int depth);
 t_lst_ants				**lst_ants_array(t_lst_ants *lst, int size);
 t_lst_ants				*create_ants(t_lemin *lem);
 void					refresh_ants(t_lemin *lem);
-
 
 /*
 ** ========================== LEM_IN FUNCTION =================================
@@ -157,6 +162,11 @@ t_lemin					*apply_algo(t_lemin *lem);
 void					adapt_capmatrix(t_lemin *lem);
 void					adapt_flowmatrix(t_lemin *lem);
 void					parent_zero(t_lemin *lem);
+void					do_all_matrix(t_lemin *lem);
+void					fill_distance(t_lemin *lem);
+void					fill_weight_matrix(t_lemin *lem);
+void					count_all_distance(t_lemin *lem, int *inq,
+							void *data, t_queue **q);
 
 /*
 ** Test functions

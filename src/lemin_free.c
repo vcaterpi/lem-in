@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/04 16:51:37 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/15 17:49:22 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	lemin_free(t_lemin *lem)
 	free(lem->arr_ants);
 	free(lem->arr_path);
 	free(lem->arr_room);
-
 	free(lem);
 	lem = NULL;
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 00:05:45 by antondob          #+#    #+#             */
-/*   Updated: 2020/10/04 17:01:03 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/15 17:52:50 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
-
 
 /*
 ** Вывод тестовых параметров
@@ -21,7 +20,7 @@
 ** Вывод размера максимального потока в сети
 */
 
-void print_max_flow(t_lemin *lem)
+void	print_max_flow(t_lemin *lem)
 {
 	int i;
 	int maxflow;
@@ -36,9 +35,11 @@ void print_max_flow(t_lemin *lem)
 /*
 ** Вывод всех найденных непересекающихся путей
 */
-void print_paths(t_lemin *lem, int curr)
+
+void	print_paths(t_lemin *lem, int curr)
 {
 	int j;
+
 	if (curr == ROOMS_NUM - 1)
 	{
 		ft_printf("\n");
@@ -50,7 +51,9 @@ void print_paths(t_lemin *lem, int curr)
 		if (FLOW_MATRIX[curr][j] == 1)
 		{
 			if (curr == 0)
-				ft_printf("%s -> %s", lst_room_get_by_id(lem->rooms, curr)->name, lst_room_get_by_id(lem->rooms, j)->name);
+				ft_printf("%s -> %s",
+					lst_room_get_by_id(lem->rooms, curr)->name,
+					lst_room_get_by_id(lem->rooms, j)->name);
 			else
 				ft_printf(" -> %s", lst_room_get_by_id(lem->rooms, j)->name);
 			print_paths(lem, j);
@@ -61,7 +64,8 @@ void print_paths(t_lemin *lem, int curr)
 /*
 ** Вывод матрицы остаточных пропускных способностей
 */
-void print_capmatrix(t_lemin *lem)
+
+void	print_capmatrix(t_lemin *lem)
 {
 	int i;
 	int j;
@@ -80,7 +84,7 @@ void print_capmatrix(t_lemin *lem)
 ** Вывод матрицы потоков
 */
 
-void print_flowmatrix(t_lemin *lem)
+void	print_flowmatrix(t_lemin *lem)
 {
 	int i;
 	int j;

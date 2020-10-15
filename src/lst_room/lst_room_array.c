@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_room_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/23 21:13:25 by air_must         ###   ########.fr       */
+/*   Created: 2020/10/15 16:32:11 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/10/15 17:50:47 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_lst_rooms		**lst_room_array(t_lst_rooms *lst, int size)
 	array = (t_lst_rooms**)malloc(sizeof(t_lst_rooms*) * size);
 	while (temp_lst)
 	{
-		if(temp_lst->id != -1)
+		if (temp_lst->id != -1)
 			array[temp_lst->id] = temp_lst;
 		temp_lst = temp_lst->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/05 15:59:06 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/15 17:33:15 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_lemin		*lemin_create(void)
 	ANTS = NULL;
 	ROOMS_NUM = -1;
 	PATH_NUM = 0;
-	STEPS  = INF;
+	STEPS = INF;
 	lem->arr_ants = NULL;
 	lem->arr_path = NULL;
 	lem->arr_room = NULL;

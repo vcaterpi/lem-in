@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
+#    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/09/23 20:55:29 by air_must         ###   ########.fr        #
+#    Updated: 2020/10/15 19:11:10 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS += lemin_free.c
 SRCS += lemin_path.c
 SRCS += lemin_ants.c
 SRCS += algo_apply.c
-SRCS += algo_help.c
+SRCS += algo_help_1.c
+SRCS += algo_help_2.c
 SRCS += print_test.c
 
 # SRCS += ls_read.c
