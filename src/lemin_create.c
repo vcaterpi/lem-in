@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/15 17:33:15 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/16 00:07:42 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ t_lemin		*lemin_backup(t_lemin *result, t_lemin *lem, int steps)
 	if (!(result))
 	{
 		result = lemin_create();
+		lst_room_free(result->rooms);
 		result->rooms = ROOMS;
 		result->rooms_num = (ROOMS_NUM + 2) / 2;
 		result->ants_num = ANTS_NUM;
+		result->capacity_matrix = ft_copy_matrix(CAP_MATRIX, ROOMS_NUM);
 	}
 	if (steps > result->steps_num)
 		return (result);
@@ -57,5 +59,6 @@ t_lemin		*lemin_create(void)
 	lem->arr_room = NULL;
 	ROOMS = lst_room_create();
 	PATH = NULL;
+	ERROR = 0;
 	return (lem);
 }

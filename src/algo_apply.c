@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_apply.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 17:49:14 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/15 19:26:54 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/15 22:51:44 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void		shortest_paths(t_lemin *lem)
 	if (!q)
 		ERROR = 1;
 	count_all_distance(lem, inq, data, &q);
+	free(inq);
+	free(data);
 }
 
 int			count_steps(t_lemin *lem)
@@ -120,12 +122,14 @@ t_lemin		*apply_algo(t_lemin *lem)
 		adapt_flowmatrix(lem);
 		refresh_path(lem);
 		refresh_ants(lem);
+		ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
 		FLOW_MATRIX = flow_matr_backup;
 		if ((steps = count_steps(lem)) > result->steps_num)
 			break ;
 		result = lemin_backup(result, lem, steps);
 		ROOMS_NUM = (ROOMS_NUM - 2) * 2 + 2;
 	}
+	ft_delete_table(&FLOW_MATRIX, (ROOMS_NUM - 2) * 2 + 2);
 	lemin_free(lem);
 	return (result);
 }
