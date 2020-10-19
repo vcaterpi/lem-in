@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 17:49:14 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/15 22:51:44 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:06:10 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ t_lemin		*apply_algo(t_lemin *lem)
 
 	if (ERROR)
 		return (NULL);
-	adapt_capmatrix(lem);
 	result = NULL;
-	do_all_matrix(lem);
 	result = lemin_backup(result, lem, INF);
+	adapt_capmatrix(lem);
+	do_all_matrix(lem);
 	while (min_cost_algo(lem))
 	{
 		flow_matr_backup = ft_copy_matrix(FLOW_MATRIX, ROOMS_NUM);
@@ -129,7 +129,8 @@ t_lemin		*apply_algo(t_lemin *lem)
 		result = lemin_backup(result, lem, steps);
 		ROOMS_NUM = (ROOMS_NUM - 2) * 2 + 2;
 	}
-	ft_delete_table(&FLOW_MATRIX, (ROOMS_NUM - 2) * 2 + 2);
+	//ft_delete_table(&FLOW_MATRIX, (ROOMS_NUM - 2) * 2 + 2);
+	//ft_delete_table(&CAP_MATRIX, (ROOMS_NUM - 2) * 2 + 2);
 	lemin_free(lem);
 	return (result);
 }

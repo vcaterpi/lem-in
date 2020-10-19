@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/16 00:07:42 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:10:52 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_lemin		*lemin_backup(t_lemin *result, t_lemin *lem, int steps)
 		result = lemin_create();
 		lst_room_free(result->rooms);
 		result->rooms = ROOMS;
-		result->rooms_num = (ROOMS_NUM + 2) / 2;
+		result->rooms_num = ROOMS_NUM;
 		result->ants_num = ANTS_NUM;
 		result->capacity_matrix = ft_copy_matrix(CAP_MATRIX, ROOMS_NUM);
 	}

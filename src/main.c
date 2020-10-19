@@ -6,11 +6,54 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/10/16 00:11:14 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:02:32 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
+
+void	lemin_rooms_clear(t_lemin *lem)
+{
+	t_lst_rooms *rooms;
+	t_lst_rooms *temp;
+	t_lst_rooms *temp2;
+	int i;
+
+	i = 0;
+	rooms = lst_room_get_start(ROOMS);
+	while (rooms)
+	{
+		if (rooms->id < 0)
+		{
+			++i;
+			if (!rooms->prev)
+			{
+				temp = rooms->next;
+				free(rooms->name);
+				free(rooms);
+				rooms = temp;
+				if (rooms)	
+					temp->prev = 0;
+			}
+			else
+			{
+				rooms->prev->next = rooms->next;
+				temp = rooms->prev;
+				free(rooms->name);
+				free(rooms);
+				if (temp->next)
+					temp->next->prev = temp;
+				rooms = (temp->next ? temp->next : temp->prev);
+			}
+			continue ;
+		}
+		if (rooms)
+			temp2 = rooms;
+		rooms = rooms->next;
+	}
+	ROOMS_NUM -= i;
+	ROOMS = temp2;
+}
 
 void	print_rooms(t_lemin *lem)
 {
@@ -22,7 +65,7 @@ void	print_rooms(t_lemin *lem)
 	ft_printf("%d\n", ANTS_NUM);
 	rooms = lst_room_get_start(ROOMS);
 	i = -1;
-	/*while (++i < ROOMS_NUM)
+	while (++i < ROOMS_NUM)
 	{
 		if (rooms->id == 0)
 			ft_printf("##start\n");
@@ -30,7 +73,7 @@ void	print_rooms(t_lemin *lem)
 			ft_printf("##end\n");
 		ft_printf("%s %d %d\n", rooms->name, rooms->x, rooms->y);
 		rooms = rooms->next;
-	}*/
+	}
 	i = -1;
 	while (++i < ROOMS_NUM)
 	{
@@ -42,6 +85,7 @@ void	print_rooms(t_lemin *lem)
 				tmp = lst_room_get_by_id(ROOMS, j);
 				ft_printf("%s-%s\n", rooms->name, tmp->name);
 				CAP_MATRIX[j][i] = 0;
+
 			}
 	}
 	ft_printf("\n");
@@ -60,7 +104,7 @@ void	togo_ants(t_lemin *lem)
 	while (p)
 	{
 		i = -1;
-		while (p->ants && p->ants[++i] != -1 && i < ANTS_NUM)
+		while (p->ants && ++i < ANTS_NUM && p->ants[i] != -1)
 			if (((i == 0) || ((COND_1) && (COND_2))) && COND_3)
 			{
 				flag = 0 + COND_4;
@@ -86,13 +130,17 @@ void	test(t_lemin *lem)
 int		main(void)
 {
 	t_lemin *lem;
+	t_lst_rooms *rooms;
 
 	lem = lemin_create();
 	lemin_read(ROOMS, lem);
+	ft_printf("ROOMS_NUM p1 = %d\n", ROOMS_NUM);
+	lemin_rooms_clear(lem);
+	ft_printf("ROOMS_NUM p2 = %d\n", ROOMS_NUM);
 	lem = apply_algo(lem);
 	test(lem);
-	print_rooms(lem);
-	togo_ants(lem);
+//	print_rooms(lem);
+//	togo_ants(lem);
 	lemin_free(lem);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/15 19:29:23 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/16 21:14:10 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define COND_6			!(operand[0] && operand[1] && !operand[2])
 
 typedef struct			s_lst_rooms {
-	struct s_lst_point	*prev;
-	struct s_lst_point	*next;
+	struct s_lst_rooms	*prev;
+	struct s_lst_rooms	*next;
 	char				*name;
 	int					id;
 	int					x;

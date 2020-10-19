@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:37:55 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/15 22:31:38 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/18 17:19:07 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	fill_capmatrix(char *op0, char *op1, t_lemin *lem,
 	t_lst_rooms		*r_2;
 
 	if ((r_1 = lst_room_get_by_name(rooms, op0)) != NULL &&\
-		(r_2 = lst_room_get_by_name(rooms, op1)) != NULL)
+		(r_2 = lst_room_get_by_name(rooms, op1)) != NULL &&\
+		(r_1->id != -1) && (r_2->id != -1))
 	{
 		CAP_MATRIX[r_1->id][r_2->id] = 1;
 		CAP_MATRIX[r_2->id][r_1->id] = 1;
@@ -86,7 +87,7 @@ t_lemin		*to_read_link(t_lst_rooms *rooms, char *line, int is_ref,\
 	if (is_ref == 1)
 	{
 		ROOMS_NUM = lst_room_length(rooms);
-		CAP_MATRIX = ft_create_matrix_int(ROOMS_NUM);
+		CAP_MATRIX = ft_create_matrix_int(ROOMS_NUM - 2);
 	}
 	if (line[0] != '#')
 	{
