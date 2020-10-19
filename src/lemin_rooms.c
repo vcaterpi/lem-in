@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lemin_rooms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/10/19 20:53:32 by vcaterpi         ###   ########.fr       */
+/*   Created: 2020/10/19 20:48:19 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/10/19 20:48:37 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/lem_in.h"
 
-int		main(void)
+void	lemin_rooms_clear(t_lemin *lem)
 {
-	t_lemin		*lem;
-	t_lst_rooms	*rooms;
+	t_lst_rooms *rooms;
+	t_lst_rooms *temp;
 
-	lem = lemin_create();
-	lemin_read(ROOMS, lem);
-	lemin_rooms_clear(lem);
-	lem = apply_algo(lem);
-	optimize_lem(lem);
-	print_rooms(lem);
-	print_links(lem);
-	print_ants(lem);
-	lemin_free(lem);
-	return (0);
+	rooms = lst_room_get_start(ROOMS);
+	while (rooms)
+	{
+		if (rooms->id < 0)
+		{
+			if (!rooms->prev)
+				rooms = lst_room_free_one(rooms);
+			else
+				rooms = lst_room_free_two(rooms);
+			continue ;
+		}
+		if (rooms)
+			temp = rooms;
+		rooms = rooms->next;
+	}
+	ROOMS_NUM -= 2;
+	ROOMS = temp;
 }

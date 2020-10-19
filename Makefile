@@ -6,7 +6,7 @@
 #    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/10/15 19:11:10 by vcaterpi         ###   ########.fr        #
+#    Updated: 2020/10/19 20:50:29 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ SRCS += lemin_ants.c
 SRCS += algo_apply.c
 SRCS += algo_help_1.c
 SRCS += algo_help_2.c
+SRCS += lemin_print.c
+SRCS += lemin_rooms.c
 SRCS += print_test.c
 
 # SRCS += ls_read.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:37:55 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/18 17:19:07 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/19 20:22:15 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,5 @@ t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 		}
 		ft_strdel(&line);
 	}
-	ft_strdel(&line);
 	return (rooms);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/16 21:14:10 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/19 20:53:42 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ t_lst_rooms				*lst_room_get_by_id(t_lst_rooms *lst, int point_id);
 void					lst_room_print_lst(t_lst_rooms *lst, int depth);
 t_lst_rooms				*lst_room_update_id(t_lst_rooms *tf);
 t_lst_rooms				**lst_room_array(t_lst_rooms *lst, int size);
+t_lst_rooms				*lst_room_free_one(t_lst_rooms *rooms);
+t_lst_rooms				*lst_room_free_two(t_lst_rooms *rooms);
 
 /*
 ** ========================== FUNCTION LIST PATH ==============================
@@ -146,6 +148,11 @@ t_lst_rooms				*lemin_read(t_lst_rooms *tf, t_lemin *lem);
 void					lemin_free(t_lemin *lem);
 void					get_path(t_lemin *lem);
 void					distribution_ants(t_lemin *lem);
+void					print_ants(t_lemin *lem);
+void					print_rooms(t_lemin *lem);
+void					print_links(t_lemin *lem);
+void					lemin_rooms_clear(t_lemin *lem);
+void					optimize_lem(t_lemin *lem);
 
 /*
 ** Params processing

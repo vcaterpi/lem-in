@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_apply.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 17:49:14 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/19 14:06:10 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/19 20:09:19 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,8 @@ t_lemin		*apply_algo(t_lemin *lem)
 	int		**flow_matr_backup;
 	t_lemin	*result;
 
-	if (ERROR)
+	if (!(result = NULL) && ERROR)
 		return (NULL);
-	result = NULL;
 	result = lemin_backup(result, lem, INF);
 	adapt_capmatrix(lem);
 	do_all_matrix(lem);
@@ -124,13 +123,11 @@ t_lemin		*apply_algo(t_lemin *lem)
 		refresh_ants(lem);
 		ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
 		FLOW_MATRIX = flow_matr_backup;
+		ROOMS_NUM = (ROOMS_NUM - 2) * 2 + 2;
 		if ((steps = count_steps(lem)) > result->steps_num)
 			break ;
 		result = lemin_backup(result, lem, steps);
-		ROOMS_NUM = (ROOMS_NUM - 2) * 2 + 2;
 	}
-	//ft_delete_table(&FLOW_MATRIX, (ROOMS_NUM - 2) * 2 + 2);
-	//ft_delete_table(&CAP_MATRIX, (ROOMS_NUM - 2) * 2 + 2);
 	lemin_free(lem);
 	return (result);
 }
