@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 15:00:38 by slynell           #+#    #+#             */
-/*   Updated: 2020/10/18 18:46:37 by antondob         ###   ########.fr       */
+/*   Updated: 2020/10/20 20:13:32 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void		path_ants_create(t_lemin *lem, t_lst_path *path)
 int			path_for_next_ant(t_lemin *lem)
 {
 	t_lst_path	*path;
-	int			mini;
 	int			id;
+	int			mini;
 
 	path = PATH;
 	mini = INT32_MAX;
@@ -70,7 +70,6 @@ int			path_for_next_ant(t_lemin *lem)
 void		distribution_ants(t_lemin *lem)
 {
 	int			i;
-	int			mini;
 	int			id;
 	t_lst_path	*path;
 

@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 17:49:14 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/19 20:09:19 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/20 21:32:59 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int			min_cost_algo(t_lemin *lem)
 t_lemin		*apply_algo(t_lemin *lem)
 {
 	int		steps;
-	int		new_rooms;
 	int		**flow_matr_backup;
+	int		delta_one;
 	t_lemin	*result;
 
 	if (!(result = NULL) && ERROR)
@@ -115,16 +115,16 @@ t_lemin		*apply_algo(t_lemin *lem)
 	result = lemin_backup(result, lem, INF);
 	adapt_capmatrix(lem);
 	do_all_matrix(lem);
+	delta_one = 0;
 	while (min_cost_algo(lem))
 	{
 		flow_matr_backup = ft_copy_matrix(FLOW_MATRIX, ROOMS_NUM);
-		adapt_flowmatrix(lem);
-		refresh_path(lem);
-		refresh_ants(lem);
-		ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
+		refresh_all(lem);
 		FLOW_MATRIX = flow_matr_backup;
 		ROOMS_NUM = (ROOMS_NUM - 2) * 2 + 2;
-		if ((steps = count_steps(lem)) > result->steps_num)
+		if (result->steps_num - (steps = count_steps(lem)) == 1)
+			delta_one += 1;
+		if (steps >= result->steps_num || delta_one >= 1)
 			break ;
 		result = lemin_backup(result, lem, steps);
 	}

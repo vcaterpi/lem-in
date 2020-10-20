@@ -6,7 +6,7 @@
 #    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/10/19 20:50:29 by vcaterpi         ###   ########.fr        #
+#    Updated: 2020/10/20 20:53:18 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem-in
 
 CC = gcc
 
-FLAGS = -Wall
+FLAGS = -Wall -Werror -Wextra
 # -Wall -Werror -Wextra -O2
 
 # /*
@@ -22,12 +22,11 @@ FLAGS = -Wall
 # */
 INCS = lem_in.h
 IDIR = header
+LDIR = libft
 INCS += $(addprefix $(LDIR)/,$(addprefix $(IDIR)/,$(libft.h)))
 INCLUDES = $(addprefix $(IDIR)/,$(INCS))
 
-LDIR = libft
 LIBFT = $(addprefix $(LDIR)/,libft.a)
-
 
 # /*
 # ** ====================== SOURCE LS MAIN ==========================
@@ -118,25 +117,24 @@ OBJECTS_LST_PATH = $(addprefix $(ODIR_LST_PATH)/,$(SRC_LST_PATH:.c=.o))
 
 .PHONY: clean fclean all re
 
-all :  $(LIBFT) $(NAME)
-	@make -C $(LDIR) 2> tmp.log
+all : $(NAME) Makefile
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 
-$(NAME) :  $(LIBFT) $(OBJECTS) $(OBJECTS_LST_ROOM) $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH)  $(INCLUDES) Makefile
+$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_LST_ROOM) $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH) $(INCLUDES)
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_LST_ROOM)  $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH)  -I $(IDIR) $(LIBFT)
 	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
 
 # /*
 # ** ====================== MAKE LIBFT ==========================
 # */
-$(LIBFT) :
+$(LIBFT) : Makefile
 	@make -C $(LDIR) 2> tmp.log
 
 # /*
 # ** ====================== MAKE LST PATH ==========================
 # */
-$(ODIR_LST_PATH)/%.o : $(SDIR_LST_PATH)/%.c $(INCLUDES) Makefile
+$(ODIR_LST_PATH)/%.o : $(SDIR_LST_PATH)/%.c $(INCLUDES)
 	@if [[ $< == src/lst_path/lst_path_add.c ]]; then \
 		echo "\n > Make \033[33mlst_path\033[0mfunctions:\c"; \
 	fi
@@ -148,7 +146,7 @@ $(ODIR_LST_PATH)/%.o : $(SDIR_LST_PATH)/%.c $(INCLUDES) Makefile
 # /*
 # ** ====================== MAKE LST ANTS ==========================
 # */
-$(ODIR_LST_ANTS)/%.o : $(SDIR_LST_ANTS)/%.c $(INCLUDES) Makefile
+$(ODIR_LST_ANTS)/%.o : $(SDIR_LST_ANTS)/%.c $(INCLUDES)
 	@if [[ $< == src/lst_ants/lst_ants_add.c ]]; then \
 		echo "\n > Make \033[33mlst_ants\033[0mfunctions:\c"; \
 	fi
@@ -159,7 +157,7 @@ $(ODIR_LST_ANTS)/%.o : $(SDIR_LST_ANTS)/%.c $(INCLUDES) Makefile
 # /*
 # ** ====================== MAKE LST ROOM ==========================
 # */
-$(ODIR_LST_ROOM)/%.o : $(SDIR_LST_ROOM)/%.c $(INCLUDES) Makefile
+$(ODIR_LST_ROOM)/%.o : $(SDIR_LST_ROOM)/%.c $(INCLUDES)
 	@if [[ $< == src/lst_room/lst_room_add.c ]]; then \
 		echo "\n > Make \033[33mlst_room\033[0mfunctions:\c"; \
 	fi
@@ -171,7 +169,7 @@ $(ODIR_LST_ROOM)/%.o : $(SDIR_LST_ROOM)/%.c $(INCLUDES) Makefile
 # /*
 # ** ====================== SOURCE LS MAIN  ==========================
 # */
-$(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES) Makefile
+$(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
 	@if [[ $< == src/main.c ]]; then \
 		echo "Make \033[33m$(NAME)\033[0m\tfunctions:\c"; \
 	fi

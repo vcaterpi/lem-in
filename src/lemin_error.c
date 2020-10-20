@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 02:06:07 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/09/21 15:01:57 by slynell          ###   ########.fr       */
+/*   Updated: 2020/10/20 20:10:04 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	lemin_error(void)
 {
-	ft_putstr_fd("ERROR", 2);
+	ft_putstr_fd("ERROR\n", 2);
 	exit(EXIT_FAILURE);
 }

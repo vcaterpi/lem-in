@@ -6,7 +6,7 @@
 #    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/14 11:23:23 by slynell           #+#    #+#              #
-#    Updated: 2020/10/05 13:24:45 by vcaterpi         ###   ########.fr        #
+#    Updated: 2020/10/20 20:50:45 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -244,7 +244,7 @@ HEADERS = $(addprefix $(HDIR)/,$(HEAD))
 
 .PHONY: clean fclean all re
 
-all : $(NAME)
+all : $(NAME) Makefile
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 

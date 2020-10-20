@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:44:18 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/19 20:52:56 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/20 20:14:47 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	print_links(t_lemin *lem)
 void	print_rooms(t_lemin *lem)
 {
 	t_lst_rooms *rooms;
-	t_lst_rooms *tmp;
 	int			i;
-	int			j;
 
 	ft_printf("%d\n", ANTS_NUM);
 	rooms = lst_room_get_start(ROOMS);

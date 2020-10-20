@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/19 20:53:42 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/20 21:18:44 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ void					print_rooms(t_lemin *lem);
 void					print_links(t_lemin *lem);
 void					lemin_rooms_clear(t_lemin *lem);
 void					optimize_lem(t_lemin *lem);
+void					refresh_all(t_lemin *lem);
 
 /*
 ** Params processing

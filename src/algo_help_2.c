@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 19:11:52 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/15 19:27:32 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/20 21:20:11 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,12 @@ void	count_all_distance(t_lemin *lem, int *inq, void *data, t_queue **q)
 		free(data);
 		data = NULL;
 	}
+}
+
+void	refresh_all(t_lemin *lem)
+{
+	adapt_flowmatrix(lem);
+	refresh_path(lem);
+	refresh_ants(lem);
+	ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
 }
