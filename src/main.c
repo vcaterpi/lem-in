@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/10/20 21:32:31 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/10/22 17:56:30 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		main(void)
 	lemin_rooms_clear(lem);
 	lem = apply_algo(lem);
 	optimize_lem(lem);
-	print_rooms(lem);
-	print_links(lem);
+	//print_rooms(lem);
+	//print_links(lem);
 	print_ants(lem);
 	lemin_free(lem);
 	return (0);

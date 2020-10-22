@@ -22,7 +22,7 @@ while [ "$I" -lt 5 ]; do
 		AWAITED_RESULT=$(cat graph | grep -m 1 "Here is the" | awk '{print $8}');
 		REAL_RESULT=$(cat graph | ./lem-in | wc -l | awk '{print $1}');
 		let "DELTA = REAL_RESULT - AWAITED_RESULT";
-		if [[ "$DELTA" -lt  1 ]]; then
+		if [[ "$DELTA" -lt  3 ]]; then
 			((OK++));
 		fi
 		((COUNT--));
