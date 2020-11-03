@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/20 21:18:44 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:30:06 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include "../libft/header/libft.h"
+# include <time.h>
 
 # define INF            20000
 # define ANTS_NUM		lem->ants_num
@@ -26,6 +27,7 @@
 # define WEIGHT_MATRIX	lem->weight_matrix
 # define PARENT			lem->parent
 # define DISTANCE		lem->distance
+# define POTENTIAL		lem->potential
 # define PATH			lem->path
 # define PATH_NUM		lem->path_num
 # define DATA			*(int*)data
@@ -74,10 +76,17 @@ typedef struct			s_lst_path {
 	int					*rooms;
 }						t_lst_path;
 
+typedef struct			s_lst_text {
+	struct s_lst_text	*prev;
+	struct s_lst_text	*next;
+	char				*line;
+}						t_lst_text;
+
 typedef struct			s_lemin {
 	t_lst_ants			*ants;
 	t_lst_rooms			*rooms;
 	t_lst_path			*path;
+	t_lst_text			*text;
 	t_lst_ants			**arr_ants;
 	t_lst_path			**arr_path;
 	t_lst_rooms			**arr_room;
@@ -89,9 +98,24 @@ typedef struct			s_lemin {
 	int					rooms_num;
 	int					path_num;
 	int					*parent;
+	int					*potential;
 	int					*distance;
 	int					error;
 }						t_lemin;
+
+typedef struct			s_min
+{
+	int					room;
+	int					dist;
+}						t_min;
+
+/*
+** ========================== FUNCTION LIST TEXT ==============================
+*/
+t_lst_text				*lst_text_create();
+t_lst_text				*lst_text_add(t_lst_text *lst);
+t_lst_text				*lst_text_get_start(t_lst_text *lst);
+void					lst_text_free(t_lst_text *lst);
 
 /*
 ** ========================= FUNCTION LIST POINT ==============================
@@ -153,7 +177,8 @@ void					print_rooms(t_lemin *lem);
 void					print_links(t_lemin *lem);
 void					lemin_rooms_clear(t_lemin *lem);
 void					optimize_lem(t_lemin *lem);
-void					refresh_all(t_lemin *lem);
+void					refresh_all(t_lemin *lem, int **matrix);
+void					fill_potential(t_lemin *lem);
 
 /*
 ** Params processing
@@ -167,14 +192,16 @@ void					params_free(t_lemin *lem);
 */
 
 t_lemin					*apply_algo(t_lemin *lem);
-void					adapt_capmatrix(t_lemin *lem);
-void					adapt_flowmatrix(t_lemin *lem);
+int						**adapt_capmatrix(t_lemin *lem);
+void					adapt_flowmatrix(t_lemin *lem, int **matrix);
 void					parent_zero(t_lemin *lem);
 void					do_all_matrix(t_lemin *lem);
 void					fill_distance(t_lemin *lem);
 void					fill_weight_matrix(t_lemin *lem);
-void					count_all_distance(t_lemin *lem, int *inq,
+void					count_all_distance_ford(t_lemin *lem, int *inq,
 							void *data, t_queue **q);
+void					count_all_distance_dkst(t_lemin *lem, int *vst,
+							t_min *min, int v);
 
 /*
 ** Test functions
@@ -184,6 +211,7 @@ void					print_matrix(t_lemin *lem);
 void					print_graph(t_lemin *lem);
 void					print_paths(t_lemin *lem, int curr);
 void					print_flowmatrix(t_lemin *lem);
+void					print_text_inst(t_lemin *lem);
 void					print_capmatrix(t_lemin *lem);
 void					print_max_flow(t_lemin *lem);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:37:55 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/10/20 21:30:51 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:31:47 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 	ex = -1;
 	while (get_next_line(0, &line) > 0)
 	{
+		lem->text = (lem->text) ? lst_text_add(lem->text) : lst_text_create();
+		lem->text->line = ft_strdup(line);
 		if (is_ref == -1 && ft_strlen(line) < 11 && ft_atoi(line) > 0)
 		{
 			is_ref += 1;

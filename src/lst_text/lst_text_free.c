@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lst_path_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/11/03 19:29:32 by air_must         ###   ########.fr       */
+/*   Created: 2020/10/15 17:40:14 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/11/03 02:23:08 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/lem_in.h"
+#include "../../header/lem_in.h"
 
-int		main(void)
+void	lst_text_free(t_lst_text *lst)
 {
-	t_lemin		*lem;
+	t_lst_text *temp_lst;
 
-	lem = lemin_create();
-	lemin_read(ROOMS, lem);
-	if (ROOMS_NUM == -1)
-		lemin_error();
-	lemin_rooms_clear(lem);
-	lem = apply_algo(lem);
-	optimize_lem(lem);
-	if (lst_path_length(lem->path) == 0)
-		lemin_error();
-	print_text_inst(lem);
-	// print_rooms(lem);
-	// print_links(lem);
-	print_ants(lem);
-	lemin_free(lem);
-	return (0);
+	if (lst)
+	{
+		if (lst->prev)
+			lst = lst_text_get_start(lst);
+		while (lst)
+		{
+			temp_lst = lst->next;
+			free(lst->line);
+			free(lst);
+			lst = temp_lst;
+		}
+		lst = NULL;
+	}
+	free(lst);
+	lst = NULL;
 }

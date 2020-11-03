@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
+#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/10/22 17:50:08 by vcaterpi         ###   ########.fr        #
+#    Updated: 2020/11/03 19:31:27 by air_must         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,6 +114,22 @@ SRC_LST_PATH += lst_path_array.c
 SOURCES_LST_PATH = $(addprefix $(SDIR_LST_PATH)/,$(SRC_LST_PATH))
 OBJECTS_LST_PATH = $(addprefix $(ODIR_LST_PATH)/,$(SRC_LST_PATH:.c=.o))
 
+# /*
+# ** ====================== SOURCE LST TEXT ==========================
+# */
+SDIR_LST_TEXT = src/lst_text
+ODIR_LST_TEXT = obj/lst_text
+
+SRC_LST_TEXT = lst_text_add.c
+SRC_LST_TEXT += lst_text_create.c
+SRC_LST_TEXT += lst_text_free.c
+SRC_LST_TEXT += lst_text_get_start.c
+
+
+SOURCES_LST_TEXT = $(addprefix $(SDIR_LST_TEXT)/,$(SRC_LST_TEXT))
+OBJECTS_LST_TEXT = $(addprefix $(ODIR_LST_TEXT)/,$(SRC_LST_TEXT:.c=.o))
+
+
 
 .PHONY: clean fclean all re $(LIBFT)
 
@@ -121,8 +137,8 @@ all : $(NAME) Makefile
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 
-$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_LST_ROOM) $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH) $(INCLUDES)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_LST_ROOM)  $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH)  -I $(IDIR) $(LIBFT)
+$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_LST_ROOM) $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH) $(OBJECTS_LST_TEXT) $(INCLUDES)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_LST_ROOM)  $(OBJECTS_LST_ANTS) $(OBJECTS_LST_PATH) $(OBJECTS_LST_TEXT) -I $(IDIR) $(LIBFT)
 	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
 
 # /*
@@ -130,6 +146,18 @@ $(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_LST_ROOM) $(OBJECTS_LST_ANTS) $(OBJECTS_
 # */
 $(LIBFT) : Makefile
 	@make -C $(LDIR) 2> tmp.log
+
+# /*
+# ** ====================== MAKE LST TEXT ==========================
+# */
+$(ODIR_LST_TEXT)/%.o : $(SDIR_LST_TEXT)/%.c $(INCLUDES)
+	@if [[ $< == src/lst_text/lst_text_add.c ]]; then \
+		echo "\n > Make \033[33mlst_text\033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_LST_TEXT) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
 
 # /*
 # ** ====================== MAKE LST PATH ==========================

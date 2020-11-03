@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin_free.c                                       :+:      :+:    :+:   */
+/*   lst_text_add.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/11/03 19:28:29 by air_must         ###   ########.fr       */
+/*   Updated: 2020/11/03 02:50:38 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/lem_in.h"
+#include "../../header/lem_in.h"
 
-void	lemin_free(t_lemin *lem)
+t_lst_text		*lst_text_add(t_lst_text *lst)
 {
-	ft_free_matrix_int(&CAP_MATRIX, ROOMS_NUM);
-	ft_free_matrix_int(&WEIGHT_MATRIX, ROOMS_NUM);
-	ft_free_matrix_int(&FLOW_MATRIX, ROOMS_NUM);
-	lst_room_free(ROOMS);
-	lst_path_free(PATH);
-	lst_ants_free(ANTS);
-	lst_text_free(lem->text);
-	free(PARENT);
-	free(DISTANCE);
-	free(POTENTIAL);
-	free(lem->arr_ants);
-	free(lem->arr_path);
-	free(lem->arr_room);
-	free(lem);
+	t_lst_text	*temp_lst;
+
+	temp_lst = lst_text_create();
+	temp_lst->next = lst;
+	lst->prev = temp_lst;
+	lst = lst->prev;
+	return (lst);
 }

@@ -6,7 +6,7 @@
 #    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/14 11:23:23 by slynell           #+#    #+#              #
-#    Updated: 2020/10/20 20:50:45 by vcaterpi         ###   ########.fr        #
+#    Updated: 2020/10/22 19:17:21 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -O2
+FLAGS = -Wall -Werror -Wextra
 
 SDIR = src
 

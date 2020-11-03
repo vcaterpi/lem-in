@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_help.c                                        :+:      :+:    :+:   */
+/*   algo_help_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 23:54:19 by antondob          #+#    #+#             */
-/*   Updated: 2020/10/15 17:51:36 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/11/01 17:54:38 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,33 +77,33 @@ void	fill_weight_matrix(t_lemin *lem)
 ** новый граф был эквивалентен исходному
 */
 
-void	adapt_capmatrix(t_lemin *lem)
+int		**adapt_capmatrix(t_lemin *lem)
 {
-	int	**new_matrix;
+	int **mini_flow;
 	int	new_rooms;
 	int	i;
 	int	j;
 
 	if (ERROR)
-		return ;
+		return (NULL);
 	new_rooms = (ROOMS_NUM - 2) * 2 + 2;
-	if (!(new_matrix = ft_create_matrix_int(new_rooms)))
+	mini_flow = CAP_MATRIX;
+	if (!(CAP_MATRIX = ft_create_matrix_int(new_rooms)))
 		ERROR = 1;
 	i = -1;
 	while ((!ERROR) && (++i < ROOMS_NUM))
 	{
 		j = -1;
 		while (++j < ROOMS_NUM)
-			if (CAP_MATRIX[i][j] == 1)
-				new_matrix[i * 2 - (i == ROOMS_NUM - 1)]\
+			if (mini_flow[i][j] == 1)
+				CAP_MATRIX[i * 2 - (i == ROOMS_NUM - 1)]\
 				[(j * 2 - 1) * (j != 0)] = 1;
 			else if ((i == j) && (i * j != 0) &&
 				(i != ROOMS_NUM - 1) && (j != ROOMS_NUM - 1))
-				new_matrix[i * 2 - 1][j * 2] = 1;
+				CAP_MATRIX[i * 2 - 1][j * 2] = 1;
 	}
-	ft_delete_table(&CAP_MATRIX, ROOMS_NUM);
-	CAP_MATRIX = new_matrix;
 	ROOMS_NUM = new_rooms;
+	return (mini_flow);
 }
 
 /*
@@ -112,18 +112,15 @@ void	adapt_capmatrix(t_lemin *lem)
 ** найденные пути были эквивалентны
 */
 
-void	adapt_flowmatrix(t_lemin *lem)
+void	adapt_flowmatrix(t_lemin *lem, int **mini_flow)
 {
 	int	old_rooms;
-	int	**old_matrix;
 	int	i;
 	int	j;
 
 	if (ERROR)
 		return ;
 	old_rooms = (ROOMS_NUM + 2) / 2;
-	if (!(old_matrix = ft_create_matrix_int(old_rooms)))
-		ERROR = 1;
 	i = -1;
 	while ((!ERROR) && (++i < old_rooms))
 	{
@@ -131,9 +128,10 @@ void	adapt_flowmatrix(t_lemin *lem)
 		while (++j < old_rooms)
 			if ((j != 0) && (i != old_rooms - 1) &&
 				FLOW_MATRIX[i * 2][j * 2 - 1] == 1)
-				old_matrix[i][j] = 1;
+				mini_flow[i][j] = 1;
+			else
+				mini_flow[i][j] = 0;
 	}
-	ft_delete_table(&FLOW_MATRIX, ROOMS_NUM);
-	FLOW_MATRIX = old_matrix;
+	FLOW_MATRIX = mini_flow;
 	ROOMS_NUM = old_rooms;
 }
