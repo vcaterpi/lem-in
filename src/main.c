@@ -6,7 +6,7 @@
 /*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/11/03 19:29:32 by air_must         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:56:10 by air_must         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int		main(void)
 	if (lst_path_length(lem->path) == 0)
 		lemin_error();
 	print_text_inst(lem);
-	// print_rooms(lem);
-	// print_links(lem);
 	print_ants(lem);
 	lemin_free(lem);
 	return (0);
