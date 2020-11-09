@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/11/03 19:30:06 by air_must         ###   ########.fr       */
+/*   Updated: 2020/11/09 16:52:19 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@
 # define STEPS          lem->steps_num
 # define COND_1			(prev = lem->arr_ants[p->ants[i - 1]])->room_id != 0
 # define COND_2			prev->room_id != p->rooms[1]
-# define COND_3			(a = lem->arr_ants[p->ants[i]])->room_id != ROOM_LAST
-# define COND_4			(a->room_id = p->rooms[++(a->index)]) != ROOM_LAST
+# define COND_3			((a = lem->arr_ants[p->ants[i]])->room_id != ROOM_LAST)
+# define COND_4			(a->room_id = p->rooms[++(a->index)]) == ROOM_LAST
 # define COND_5			(lem->arr_room[a->room_id])->name
 # define COND_6			!(operand[0] && operand[1] && !operand[2])
+# define COND_7			prev->room_id == ROOM_LAST
 
 typedef struct			s_lst_rooms {
 	struct s_lst_rooms	*prev;
@@ -204,7 +205,7 @@ void					count_all_distance_dkst(t_lemin *lem, int *vst,
 							t_min *min, int v);
 
 /*
-** Test functions
+** Print and test functions
 */
 void					test_params(t_lemin *lem);
 void					print_matrix(t_lemin *lem);
@@ -214,5 +215,7 @@ void					print_flowmatrix(t_lemin *lem);
 void					print_text_inst(t_lemin *lem);
 void					print_capmatrix(t_lemin *lem);
 void					print_max_flow(t_lemin *lem);
+void					print_ants_in_path(t_lemin *lem, t_lst_path *p,
+							int *flag);
 
 #endif

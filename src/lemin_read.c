@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 17:37:55 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/11/03 19:31:47 by air_must         ###   ########.fr       */
+/*   Created: 2020/11/09 16:40:18 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/11/09 20:05:10 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ t_lst_rooms	*lemin_read(t_lst_rooms *rooms, t_lemin *lem)
 		}
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	return (rooms);
 }

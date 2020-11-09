@@ -6,7 +6,7 @@
 /*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 02:06:07 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/10/20 20:10:04 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/11/09 17:52:55 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	lemin_error(void)
 {
-	ft_putstr_fd("ERROR\n", 2);
+	ft_putstr_fd("ERROR\n", 1);
 	exit(EXIT_FAILURE);
 }

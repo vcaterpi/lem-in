@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: air_must <air_must@student.42.fr>          +#+  +:+       +#+         #
+#    By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/11/03 19:31:27 by air_must         ###   ########.fr        #
+#    Updated: 2020/11/09 16:38:52 by vcaterpi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS += algo_apply.c
 SRCS += algo_help_1.c
 SRCS += algo_help_2.c
 SRCS += lemin_print.c
+SRCS += lemin_print_help.c
 SRCS += lemin_rooms.c
 SRCS += print_test.c
 

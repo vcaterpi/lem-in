@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/30 18:55:04 by slynell           #+#    #+#             */
-/*   Updated: 2020/11/03 19:56:10 by air_must         ###   ########.fr       */
+/*   Created: 2020/11/09 16:40:03 by vcaterpi          #+#    #+#             */
+/*   Updated: 2020/11/09 20:15:57 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(void)
 	optimize_lem(lem);
 	if (lst_path_length(lem->path) == 0)
 		lemin_error();
-	print_text_inst(lem);
+	//print_text_inst(lem);
 	print_ants(lem);
 	lemin_free(lem);
 	return (0);

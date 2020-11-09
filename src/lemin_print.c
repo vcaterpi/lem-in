@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: air_must <air_must@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 20:44:18 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/11/03 19:28:43 by air_must         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:08:20 by vcaterpi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,17 @@ void	print_rooms(t_lemin *lem)
 void	print_ants(t_lemin *lem)
 {
 	int			flag;
-	int			i;
-	t_lst_ants	*a;
-	t_lst_ants	*prev;
 	t_lst_path	*p;
 
 	p = PATH;
+	flag = 0;
 	while (p)
 	{
-		flag = (p == PATH ? 0 : flag);
-		i = -1;
-		while (p->ants && ++i < ANTS_NUM && p->ants[i] != -1)
-			if (((i == 0) || ((COND_1) && (COND_2))) && COND_3)
-			{
-				flag += COND_4;
-				ft_printf("L%d-%s ", p->ants[i] + 1, COND_5);
-			}
+		print_ants_in_path(lem, p, &flag);
 		if (!(p = p->next))
 		{
-			ft_printf("\n");
-			if (!flag)
+			ft_printf("\n", flag);
+			if (flag == ANTS_NUM)
 				break ;
 			p = PATH;
 		}
@@ -97,7 +88,7 @@ void	print_text_inst(t_lemin *lem)
 	x = lst_text_get_start(lem->text);
 	while (x && x->next)
 		x = x->next;
-	while (x && x->prev)
+	while (x)
 	{
 		ft_printf("%s\n", x->line);
 		x = x->prev;
